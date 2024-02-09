@@ -10,14 +10,15 @@ function AdminSideBar() {
     { path: '/admin/students', label: 'Students' },
     { path: '/admin/assignments', label: 'Assignments'},
     { path: '/admin/registration', label: 'Registration'},
+    { path: '/admin/school', label: 'School' },
     { path: '/admin/inbox', label: 'Inbox' },
     // { path: '/admin/refunds', label: 'Refunds'},
-    // { path: '/admin/profile', label: 'Profile'},
+    { path: '/admin/profile', label: 'Profile'},
   ];
 
   return (
     <>
-      <nav class="bg-[#121e31] min-h-[745px] left-0 min-w-[250px] py-6 px-4 font-[sans-serif] overflow-auto">
+      <nav class="bg-[#121e31] min-h-[745px] left-0 min-w-[250px] py-5 px-2 font-[sans-serif] overflow-auto">
         <div className="flex flex-wrap items-center cursor-pointer">
           <img src="https://readymadeui.com/profile.webp" className="w-10 h-10 rounded-full border-2 border-white" />
           <div className="ml-4">
@@ -26,7 +27,7 @@ function AdminSideBar() {
           </div>
         </div>
 
-        <ul className="space-y-3 mt-10">
+        <ul className="space-y-2 mt-10">
           {AdminSideBarItems.map((item) => (
             <li key={item.path}>
               <Link

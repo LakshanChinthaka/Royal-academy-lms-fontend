@@ -14,6 +14,8 @@ import SignInPage from "./Components/SignInPage/SignInPage";
 import Text from "./Components/text/Text";
 import AdminDashboard from "./Components/AdminDashboard/AdminDashboard";
 import Inbox from "./Components/AdminDashboard/Inbox";
+import ProfilePage from "./Components/ProfilePage/ProfilePage";
+import School from "./Components/AdminDashboard/School/School";
 
 function App() {
 
@@ -46,7 +48,7 @@ function App() {
           <Route path="/program" element={<Program />} />
           <Route path="/course" element={<CourseInfo/>} /> 
           <Route path="/text" element={<Text />} />
-          
+
            <>
             {userRole === "ROLE_ADMIN" && (
               <>
@@ -54,10 +56,12 @@ function App() {
                 <Route path="/admin/assignments" element={<AdminDashboard><Assigment /></AdminDashboard>} />
                 <Route path="/admin/registration" element={<AdminDashboard><Registration/></AdminDashboard>} />
                 <Route path="/admin/students" element={<AdminDashboard><StudentTable /></AdminDashboard>} />        
-                <Route path="'/admin/inbox'" element={<AdminDashboard><Inbox/></AdminDashboard>} />        
+                <Route path="/admin/inbox" element={<AdminDashboard><Inbox/></AdminDashboard>} />        
+                <Route path="/admin/profile" element={<AdminDashboard><ProfilePage/></AdminDashboard>} />        
+                <Route path="/admin/school" element={<AdminDashboard><School/></AdminDashboard>} />        
               </>
             )}
- 
+
             {userRole === "ROLE_USER" && (
               <>
                 <Route path="/student/dashboard" element={<StudentDashboard/>} />         

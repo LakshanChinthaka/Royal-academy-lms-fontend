@@ -1,18 +1,16 @@
-
 import React, { useState } from "react";
 import { Grid } from "@mui/material";
 import Dropdown from "../../../utils/Dropdown/Dropdown";
 import axios from "axios";
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
+import SuccessAlert from "../../../utils/SuccessAlert";
 
 function Registration() {
+  const [selectedRole, setSelectedRole] = useState("");
+  const { SuccessMessage } = SuccessAlert();
   const [rb, setRb] = useState("");
+
   const [formData, setFormData] = useState({
+    role: "",
     firstName: "",
     lastName: "",
     address: "",
@@ -34,95 +32,79 @@ function Registration() {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleRoleSelect = (role) => {
+    setSelectedRole(role);
+    console.log(selectedRole);
+  };
+  // create address object
+  const address = {
+    addressId: 1,
+    address: formData.address,
+  };
+
+  // add address in paylaod as a object
+  const payload = {
+    ...formData,
+    address: address,
+  };
+  //defalut role
+  const role = "USER";
+  //gender conver to upper case
+  payload.gender = payload.gender.toUpperCase();
+  payload.role = role;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password === formData.confirmPassword) {
       try {
-        console.log("Before submit - " + formData.gender);
+        let url = "http://localhost:8080/api/v1/student/add";
 
-        const address = {
-          addressId: 1,
-          address: formData.address,
-        };
+        const res = await axios.post(url, payload);
+        
 
-        const payload = {
-          ...formData,
-          address: address,
-        };
+        setFormData({
+          role: "",
+          firstName: "",
+          lastName: "",
+          address: "",
+          mobileNo: "",
+          gender: "",
+          nic: "",
+          email: "",
+          dob: "",
+          password: "",
+          confirmPassword: ""
+        });
 
-        payload.gender = payload.gender.toUpperCase();
-
-        console.log("Before submit payload - " + payload.address);
-        const res = await axios.post(
-          "http://localhost:8080/api/v1/student/add",
-          payload
+        const confirmed = await SuccessMessage(
+          res.data.data,
+          "success"
         );
 
-        if (res.data.data.code === 200) {
-          profileImageUpload(res);
-        }
       } catch (error) {
-        console.log(error);
+        const confirmed = await SuccessMessage(
+          error.response.data.data,
+          "error"
+        );
       }
     } else {
-      alert("Passwords do not match");
-    }
-  };
-
-  const profileImageUpload = (res) => {
-    const fileUpload = (e) => {
-      let file = e.target.files[0];
-      if (!file) return;
-      if (file == null || file == undefined) return;
-
-      const storage = getStorage();
-      const storageRef = ref(storage, "profile-image/" + file.name);
-
-      let uploadTask = uploadBytesResumable(storageRef, file);
-
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
-
-            const studentId = res.data.data;
-            const imageUrl = downloadURL;
-
-            axios.put(
-              "http://localhost:8080/api/v1/student/upload-image",
-              { imageUrl, studentId }
-            ).then((response) => {
-              console.log("Image upload response:", response.data);
-            }).catch((error) => {
-              console.log("Error uploading image:", error);
-            });
-          });
-        }
+      const confirmed = await SuccessMessage(
+       " Passwords does not match",
+        "error"
       );
-    };
-
-    fileUpload(e);
+    }
   };
 
   return (
     <div>
       <Grid container>
-        <Grid item xs={4}>
-          <Dropdown />
-        </Grid>
+        <Grid item xs={4}></Grid>
         <Grid item xs={4}></Grid>
         <Grid item xs={4}></Grid>
         <Grid item xs={10}>
           <Grid container>
             <Grid item xs={12}>
-             
-
-            <div class="max-w-4xl mx-auto font-[sans-serif] text-[#333] p-6">
+              <div class="max-w-4xl mx-auto font-[sans-serif] text-[#333] p-6">
                 <form onSubmit={handleSubmit}>
                   <div class="grid sm:grid-cols-2 gap-y-7 gap-x-12">
                     <div>
@@ -285,31 +267,8 @@ function Registration() {
                       />
                     </div>
                   </div>
-                  <div class="!mt-10 flex flex-col">
+                  <div class="!mt-2 flex flex-col">
                     {/* Image upload */}
-                    <label
-                      htmlFor="uploadFile"  
-                      class="bg-gray-800 hover:bg-gray-700 flex max-w-[200px] text-white text-sm px-4 py-2.5 outline-none rounded  cursor-pointer   font-[sans-serif]"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-5 mr-2 fill-white inline"
-                        viewBox="0 0 32 32"
-                      >
-                        <path
-                          d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
-                          data-original="#000000"
-                        />
-                        <path
-                          d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
-                          data-original="#000000"
-                        />
-                      </svg>
-                      Upload Profile Image
-                      {/* <input  type="file" id="uploadFile" class="hidden" /> */}
-                      <input onChange={profileImageUpload} type="file" id="uploadFile" class="hidden" />
-
-                    </label>
 
                     {/* Sumbit btn */}
                     <button
@@ -321,7 +280,6 @@ function Registration() {
                   </div>
                 </form>
               </div>
-
             </Grid>
           </Grid>
         </Grid>
@@ -329,5 +287,4 @@ function Registration() {
     </div>
   );
 }
-
 export default Registration;

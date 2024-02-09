@@ -1,13 +1,20 @@
 import React from 'react'
 import { useState } from "react";
 
-function Dropdown() {
+function Dropdown({onSelect}) {
 
     const [open, setOpen] = useState(false);
+    const [selectedValue, setSelectedValue] = useState("");
 
     const handleOpen = () => {
       setOpen(!open);
     };
+
+    const handleSelect = (value) => {
+      setSelectedValue(value);
+      onSelect(value); // Call the onSelect callback with the selected value
+      setOpen(false); // Close the dropdown after selection
+  };
 
   return (
     <div>
@@ -33,16 +40,10 @@ function Dropdown() {
             </button>
             {open ? (
               <ul class="absolute shadow-lg bg-white py-2 z-[1000] min-w-full w-max rounded max-h-96 overflow-auto">
-                <li class="py-2.5 px-6 hover:bg-blue-50 text-black text-sm cursor-pointer">
+                <li onClick={() => handleSelect("USER")} class="py-2.5 px-6 hover:bg-blue-50 text-black text-sm cursor-pointer">
                   USER
                 </li>
-                <li class="py-2.5 px-6 hover:bg-blue-50 text-black text-sm cursor-pointer">
-                  STUDENT
-                </li>
-                <li class="py-2.5 px-6 hover:bg-blue-50 text-black text-sm cursor-pointer">
-                  LECTURE
-                </li>
-                <li class="py-2.5 px-6 hover:bg-blue-50 text-black text-sm cursor-pointer">
+                <li   onClick={() => handleSelect("ADMIN")} class="py-2.5 px-6 hover:bg-blue-50 text-black text-sm cursor-pointer">
                   ADMIN
                 </li>
               </ul>
