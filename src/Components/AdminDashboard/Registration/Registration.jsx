@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Grid } from "@mui/material";
-import Dropdown from "../../../utils/Dropdown/Dropdown";
 import axios from "axios";
 import SuccessAlert from "../../../utils/SuccessAlert";
+
 
 function Registration() {
   const [selectedRole, setSelectedRole] = useState("");
@@ -268,7 +268,6 @@ function Registration() {
                     </div>
                   </div>
                   <div class="!mt-2 flex flex-col">
-                    {/* Image upload */}
 
                     {/* Sumbit btn */}
                     <button

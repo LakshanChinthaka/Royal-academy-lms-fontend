@@ -16,6 +16,7 @@ import AdminDashboard from "./Components/AdminDashboard/AdminDashboard";
 import Inbox from "./Components/AdminDashboard/Inbox";
 import ProfilePage from "./Components/ProfilePage/ProfilePage";
 import School from "./Components/AdminDashboard/School/School";
+import SchoolCreate from "./Components/AdminDashboard/School/SchoolCreate";
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
                 <Route path="/admin/inbox" element={<AdminDashboard><Inbox/></AdminDashboard>} />        
                 <Route path="/admin/profile" element={<AdminDashboard><ProfilePage/></AdminDashboard>} />        
                 <Route path="/admin/school" element={<AdminDashboard><School/></AdminDashboard>} />        
+                <Route path="/admin/school/add" element={<AdminDashboard><SchoolCreate/></AdminDashboard>} />        
               </>
             )}
 
