@@ -47,8 +47,9 @@ function SchoolCreate() {
         res.data.data,
         "success"
       );
-      //got to back
       navigate(-1);
+      //got to back
+      
     } catch (error) {
       const confirmed = await SuccessMessage(error.response.data.data, "error");
     }
@@ -75,6 +76,7 @@ function SchoolCreate() {
                 value={data.schoolCode}
                 onChange={handleChange}
                 required
+                // disabled
                 name="schoolCode"
                 type="text"
                 class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"

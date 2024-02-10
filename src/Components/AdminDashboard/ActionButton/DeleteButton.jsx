@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import ConfirmAlert from "../../../utils/ConfiramAlert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function DeleteButton({ schoolId }) {
+function DeleteButton({ schoolId}) {
   const { ConfirmMessage } = ConfirmAlert();
+
 
   const navigete = useNavigate();
 
@@ -38,7 +39,7 @@ function DeleteButton({ schoolId }) {
       }
 
       Swal.fire("Delete Successful", "", "success");
-    //   navigete(-1)
+    window.location.reload();
     } else {
       Swal.fire("Delete Cancelled", "", "info");
     }

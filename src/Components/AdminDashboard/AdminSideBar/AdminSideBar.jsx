@@ -11,6 +11,7 @@ function AdminSideBar() {
     { path: '/admin/assignments', label: 'Assignments'},
     { path: '/admin/registration', label: 'Registration'},
     { path: '/admin/school', label: 'School'},
+    { path: '/admin/course', label: 'Course'},
     { path: '/admin/inbox', label: 'Inbox' },
     // { path: '/admin/refunds', label: 'Refunds'},
     { path: '/admin/profile', label: 'Profile'},

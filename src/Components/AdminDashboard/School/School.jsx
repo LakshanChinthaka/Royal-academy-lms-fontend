@@ -34,14 +34,9 @@ function School() {
       }));
       setSchooldetails(parsedData);
       console.log(parsedData);
-
     } catch (error) {
       console.error("Error fetching school data:", error);
     }
-
-    setSchoolDetails(prevSchools =>
-        prevSchools.filter(school => school.schoolId !== schoolId)
-      );
   };
 
   //filter data
@@ -53,8 +48,12 @@ function School() {
   const handleFilterSelect = (selectedOption) => {
     setFilterStatus(selectedOption); // Update filterStatus
   };
-
-  
+  // console.log( data.schoolId)
+  // const data = {
+  //   schoolId: data.schoolId,
+  //   schoolName: data.schoolName,
+  //   schoolCode: data.schoolCode,
+  // };
 
   return (
     <div>
@@ -132,6 +131,7 @@ function School() {
                     </td>
                     <td className="pl-2 pr-2 py-4 text-sm">
                       {data.schoolName}
+
                     </td>
                     <td className="px-6 py-4 text-sm">
                       {data.activeStatus ? (
@@ -149,8 +149,12 @@ function School() {
                     <td className="px-6 py-4 text-sm">{data.modifiedData}</td>
                     <td className="px-6 py-4 text-sm">{data.modifiedBy}</td>
                     <td class="pl-2 pr-2 py-4 flex">
-                      <EditButton/>
-                      <DeleteButton schoolId={data.schoolID}/>
+      
+                      <Link to={`/admin/school/update/${data.schoolID}/${data.schoolCode}`}>
+                        <EditButton />
+                      </Link>
+
+                      <DeleteButton schoolId={data.schoolID} />
                     </td>
                     {/* Add other columns here */}
                   </tr>

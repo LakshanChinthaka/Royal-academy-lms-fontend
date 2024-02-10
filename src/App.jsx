@@ -17,6 +17,8 @@ import Inbox from "./Components/AdminDashboard/Inbox";
 import ProfilePage from "./Components/ProfilePage/ProfilePage";
 import School from "./Components/AdminDashboard/School/School";
 import SchoolCreate from "./Components/AdminDashboard/School/SchoolCreate";
+import SchoolUpdate from "./Components/AdminDashboard/School/SchoolUpdate";
+import Course from "./Components/AdminDashboard/Course/Course";
 
 function App() {
 
@@ -58,9 +60,13 @@ function App() {
                 <Route path="/admin/registration" element={<AdminDashboard><Registration/></AdminDashboard>} />
                 <Route path="/admin/students" element={<AdminDashboard><StudentTable /></AdminDashboard>} />        
                 <Route path="/admin/inbox" element={<AdminDashboard><Inbox/></AdminDashboard>} />        
-                <Route path="/admin/profile" element={<AdminDashboard><ProfilePage/></AdminDashboard>} />        
+                <Route path="/admin/profile" element={<AdminDashboard><ProfilePage/></AdminDashboard>} />   
+                {/*School  */}
                 <Route path="/admin/school" element={<AdminDashboard><School/></AdminDashboard>} />        
-                <Route path="/admin/school/add" element={<AdminDashboard><SchoolCreate/></AdminDashboard>} />        
+                <Route path="/admin/school/add" element={<AdminDashboard><SchoolCreate/></AdminDashboard>} />  
+                <Route path="/admin/school/update/:id/:code" element={<AdminDashboard><SchoolUpdate/></AdminDashboard>} />        
+                {/* Course */}
+                <Route path="/admin/course/" element={<AdminDashboard><Course/></AdminDashboard>} />  
               </>
             )}
 
