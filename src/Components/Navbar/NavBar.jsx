@@ -4,7 +4,9 @@ import logo from "../../assets/academy-logo.png";
 import { Link } from "react-router-dom";
 import LogOutButton from "../logoutButton/LogOutButton";
 
+
 function NavBar({ userRole }) {
+
   return (
     <>
       <header class="shadow-md py-4 px-4 sm:px-10 bg-white font-[sans-serif] min-h-[30px]">

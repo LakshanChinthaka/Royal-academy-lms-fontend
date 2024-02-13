@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import SuccessAlert from "../../utils/SuccessAlert";
-
+import { jwtDecode } from "jwt-decode";
 
 function SigninPage() {
   const { SuccessMessage } = SuccessAlert();
-  const [loading, setLoading] = useState(false);
+
 
   const [loginData, setLoginData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -20,33 +20,32 @@ function SigninPage() {
     setLoginData({ ...loginData, [name]: value });
   };
 
-  console.log(loginData);
 
   const handleLogin = async (e) => {
+    console.log("P ",loginData.password );
+    console.log("U ",loginData.email);
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8080/auth/login",
+        "http://localhost:8080/authenticate",
         loginData
       );
 
-      const userRole = response.data.authorities[0].authority;
-      const role = userRole.slice(5);
 
-      localStorage.setItem("userData", JSON.stringify(response.data));
-
-      console.log("Role:", role);
-
-      if (role === "USER") {
-        navigate("/");
-      } else {
+      const token = response.data.token;
+      const decodedToken = jwtDecode(token);
+  
+      localStorage.setItem("token", token);
+      localStorage.setItem("userRole", decodedToken.role);
+  
+      if (decodedToken.role === "ROLE_ADMIN") {
+        console.log("Login page user role- ",decodedToken.role)
         navigate("/admin/dashboard");
+      } else {     
+        console.log(decodedToken.role)
+        navigate("/student/dashboard"); 
       }
 
-      // const confirmed = await SuccessMessage(
-      //   "Successfully logged in",
-      //   "success"
-      // );
 
       window.location.reload();
     } catch (err) {
@@ -95,14 +94,14 @@ function SigninPage() {
 
               <div>
                 <input
-                  value={loginData.email}
+                  value={loginData.username}
                   onChange={handleChange}
-                  name="email"
-                  type="email"
-                  autocomplete="email"
+                  name="username"
+                  type="text"
+                  // autocomplete="email"
                   required
                   class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-600"
-                  placeholder="Email address"
+                  placeholder="Username"
                 />
               </div>
               <div>

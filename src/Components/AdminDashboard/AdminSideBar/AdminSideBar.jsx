@@ -9,7 +9,7 @@ function AdminSideBar() {
     // { path: '/admin/dashboard', label: 'Dashboard' },
     { path: '/admin/students', label: 'Students' },
     { path: '/admin/assignments', label: 'Assignments'},
-    { path: '/admin/registration', label: 'Registration'},
+    { path: '/admin/registration', label: 'Student Registration'},
     { path: '/admin/school', label: 'School'},
     { path: '/admin/course', label: 'Course'},
     { path: '/admin/inbox', label: 'Inbox' },

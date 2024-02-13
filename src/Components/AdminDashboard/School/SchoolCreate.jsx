@@ -3,9 +3,13 @@ import axios from "axios";
 import SuccessAlert from "../../../utils/SuccessAlert";
 import { useNavigate } from "react-router-dom";
 import BackButton from "../../../utils/Dropdown/BackButton/BackButton";
+import { useToken } from '../../Context/TokenProvider';
 
 function SchoolCreate() {
+  const { token } = useToken();
+
   const { SuccessMessage } = SuccessAlert();
+
   const [data, setData] = useState({
     schoolCode: "",
     schoolName: "",
@@ -24,17 +28,14 @@ function SchoolCreate() {
   };
   console.log(payload);
 
-  const username = "laki@gmail.com";
-  const password = "21022";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const URL = "http://localhost:8080/api/v1/school/add";
     try {
       const res = await axios.post(URL, payload, {
-        auth: {
-          username: username,
-          password: password,
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
       });
 

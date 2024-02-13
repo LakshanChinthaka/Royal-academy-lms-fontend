@@ -5,10 +5,12 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import BackButton from "../../../utils/Dropdown/BackButton/BackButton";
 import Swal from "sweetalert2";
 import ConfirmAlert from "../../../utils/ConfiramAlert";
+import { useToken } from "../../Context/TokenProvider";
 
 function SchoolUpdate() {
   const { SuccessMessage } = SuccessAlert();
   const { ConfirmMessage } = ConfirmAlert();
+  const { token } = useToken();
 
   const [data, setData] = useState({
     schoolName: "",
@@ -30,10 +32,6 @@ function SchoolUpdate() {
   const payload = {
     ...data,
   };
-  // console.log(payload);
-
-  const username = "laki@gmail.com";
-  const password = "21022";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,14 +46,12 @@ function SchoolUpdate() {
     console.log(payload);
     if(confirmed){
       e.preventDefault();
-      // const URL = `http://localhost:8080/api/v1/school/edit/${id}`;
       const URL = `http://localhost:8080/api/v1/school/edit?id=${id}`; 
 
       try {
         const res = await axios.put(URL, payload, {
-          auth: {
-            username: username,
-            password: password,
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
         });
 

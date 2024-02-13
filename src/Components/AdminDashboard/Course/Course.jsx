@@ -7,28 +7,26 @@ import DeleteButton from "../ActionButton/DeleteButton";
 import { useEffect, useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import { useToken } from "../../Context/TokenProvider";
 
 function Course() {
+  const { token } = useToken();
   const [courseData, setCourseData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [type, setType] = useState();
-  const pageSize = 10; // Number of items per page
+  const pageSize = 1; // Number of items per page
 
   useEffect(() => {
     getCourseData();
   }, [currentPage]);
 
-  const username = "laki@gmail.com";
-  const password = "21022";
-
   const getCourseData = async () => {
     try {
       const URL = "http://localhost:8080/api/v1/course/find-all";
       const response = await axios.get(URL, {
-        auth: {
-          username: username,
-          password: password,
+        headers: {
+         Authorization: `Bearer ${token}`
         },
         params: {
           page: currentPage,
@@ -48,25 +46,22 @@ function Course() {
   };
 
 
+
   return (
     <div>
       <Grid container>
         {/* Your grid items */}
         <Grid item xs={2} className="mb-2">
-          <Dropdown options={["All", "Active", "Inactive"]}
-          label="Status" />
+          <Dropdown options={["All", "Active", "Inactive"]} label="Status" />
         </Grid>
         <Grid item xs={2}>
-        <Dropdown options={["All", "Active", "Inactive"]}
-          label="Category" />
+          <Dropdown options={["All", "Active", "Inactive"]} label="Category" />
         </Grid>
         <Grid item xs={2}>
-        <Dropdown options={["All", "Active", "Inactive"]}
-          label="Medium" />
+          <Dropdown options={["All", "Active", "Inactive"]} label="Medium" />
         </Grid>
         <Grid item xs={2}>
-        <Dropdown options={["All", "Active", "Inactive"]}
-          label="Type" />
+          <Dropdown options={["All", "Active", "Inactive"]} label="Type" />
         </Grid>
         <Grid item xs={4}>
           <Link to="/admin/school/add">
@@ -102,10 +97,13 @@ function Course() {
                     Code
                   </th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-white">
-                    Name
+                    Type
                   </th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-white">
-                    Status
+                  Category
+                  </th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-white">
+                    Name
                   </th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-white">
                     Duration
@@ -114,10 +112,10 @@ function Course() {
                     Medium
                   </th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-white">
-                    Category
+                    School
                   </th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-white">
-                    Type
+                  Status
                   </th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-white">
                     Actions
@@ -131,7 +129,13 @@ function Course() {
                     className={index % 2 === 0 ? "even:bg-blue-50" : ""}
                   >
                     <td className="pr-6 pl-4 py-4 text-sm">{data.code}</td>
+                    <td className="px-6 py-4 text-sm">{data.courseType}</td>
+                    <td className="px-6 py-4 text-sm">{data.category}</td>
                     <td className="pl-2 pr-2 py-4 text-sm">{data.name}</td>
+                   
+                    <td className="px-6 py-4 text-sm">{data.duration}</td>
+                    <td className="px-6 py-4 text-sm">{data.medium}</td> 
+                    <td className="px-6 py-4 text-sm">{data.schoolName}</td> 
                     <td className="px-6 py-4 text-sm">
                       <span
                         className={`w-[68px] block text-center py-0.5 border-2 border-${
@@ -142,11 +146,7 @@ function Course() {
                       >
                         {data.activeStatus ? "Active" : "Inactive"}
                       </span>
-                    </td>
-                    <td className="px-6 py-4 text-sm">{data.duration}</td>
-                    <td className="px-6 py-4 text-sm">{data.medium}</td>
-                    <td className="px-6 py-4 text-sm">{data.category}</td>
-                    <td className="px-6 py-4 text-sm">{data.courseType}</td>
+                    </td>            
                     <td className="pl-2 pr-2 py-4 flex">
                       <Link to={`/admin/course/update/${data.courseId}`}>
                         <EditButton />
@@ -167,7 +167,7 @@ function Course() {
                 of {totalPages * pageSize} entries
               </p>
               {/* Pagination  */}
-              <div className="flex items-center max-md:mt-5 mb-5" >
+              <div className="flex items-center max-md:mt-5 mb-5">
                 <Stack spacing={3}>
                   <Pagination
                     count={totalPages}
@@ -187,4 +187,3 @@ function Course() {
 }
 
 export default Course;
-

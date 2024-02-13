@@ -5,25 +5,26 @@ import Dropdown from "../../../utils/Dropdown/Dropdown";
 import { Link } from "react-router-dom";
 import EditButton from "../ActionButton/EditButton";
 import DeleteButton from "../ActionButton/DeleteButton";
+import { useToken } from '../../Context/TokenProvider';
 
 function School() {
   const [schoolDetails, setSchooldetails] = useState([]);
   const [filterStatus, setFilterStatus] = useState("All");
+  const { token } = useToken();
 
   useEffect(() => {
     getSchoolData();
   }, []);
 
-  const username = "laki@gmail.com";
-  const password = "21022";
 
   const getSchoolData = async () => {
+
     try {
+
       const URL = "http://localhost:8080/api/v1/school/find-all";
       const response = await axios.get(URL, {
-        auth: {
-          username: username,
-          password: password,
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
       });
       // Parse date arrays to string format
@@ -48,12 +49,7 @@ function School() {
   const handleFilterSelect = (selectedOption) => {
     setFilterStatus(selectedOption); // Update filterStatus
   };
-  // console.log( data.schoolId)
-  // const data = {
-  //   schoolId: data.schoolId,
-  //   schoolName: data.schoolName,
-  //   schoolCode: data.schoolCode,
-  // };
+
 
   return (
     <div>

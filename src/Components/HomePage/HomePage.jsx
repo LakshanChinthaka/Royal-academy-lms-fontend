@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import hero_img from "../../assets/hero-2d.jpg"
 import Status from '../Status/Status'
 import Fetures from '../Fetures/Fetures'
-import ContactUs from '../ContactUs/ContactUs'
+import ContactUs from '../../page/ContactUs/ContactUs'
 
 function HomePage() {
   return (

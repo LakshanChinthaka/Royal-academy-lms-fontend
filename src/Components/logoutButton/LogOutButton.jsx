@@ -20,8 +20,7 @@ function LogOutButton() {
     if (confirmed) {
 
       localStorage.removeItem("userData");
-
-      // Swal.fire("Logout Successful", "", "success");
+      localStorage.removeItem("userRole")
 
       navigate("/");
 

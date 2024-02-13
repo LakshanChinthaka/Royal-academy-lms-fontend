@@ -3,10 +3,11 @@ import Swal from "sweetalert2";
 import ConfirmAlert from "../../../utils/ConfiramAlert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useToken } from "../../Context/TokenProvider";
 
 function DeleteButton({ schoolId}) {
   const { ConfirmMessage } = ConfirmAlert();
-
+  const { token } = useToken();
 
   const navigete = useNavigate();
 
@@ -20,17 +21,15 @@ function DeleteButton({ schoolId}) {
     console.log(confirmed);
     console.log("School id -" + schoolId);
 
-    const username = "laki@gmail.com";
-    const password = "21022";
+  
 
     if (confirmed) {
       try {
         console.log("Axios");
         const URL = "http://localhost:8080/api/v1/school/delete?id=" + schoolId;
-        const response = await axios.delete(URL, {
-          auth: {
-            username: username,
-            password: password,
+        const response = await axios.delete(URL,{
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
         });
       } catch (error) {
