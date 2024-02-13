@@ -19,6 +19,7 @@ import SchoolCreate from './Components/AdminDashboard/School/SchoolCreate';
 import SchoolUpdate from './Components/AdminDashboard/School/SchoolUpdate';
 import Course from './Components/AdminDashboard/Course/Course';
 import { TokenProvider } from './Components/Context/TokenProvider';
+import CourseCreate from './Components/AdminDashboard/Course/CourseCreate';
 
 
 
@@ -62,7 +63,9 @@ function App() {
                 <Route path="/admin/school" element={<AdminDashboard><School /></AdminDashboard>} />
                 <Route path="/admin/school/add" element={<AdminDashboard><SchoolCreate /></AdminDashboard>} />
                 <Route path="/admin/school/update/:id/:code" element={<AdminDashboard><SchoolUpdate /></AdminDashboard>} />
+                {/* Course */}
                 <Route path="/admin/course/" element={<AdminDashboard><Course /></AdminDashboard>} />
+                <Route path="/admin/course/add" element={<AdminDashboard><CourseCreate/></AdminDashboard>} />
               </>
              )}
 

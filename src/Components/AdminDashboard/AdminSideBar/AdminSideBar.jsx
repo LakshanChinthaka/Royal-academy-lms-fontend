@@ -21,7 +21,7 @@ function AdminSideBar() {
 
   return (
     <>
-      <nav class="bg-[#121e31] min-h-[745px] left-0 min-w-[250px] py-5 px-3 font-[sans-serif] overflow-auto">
+      <nav class="bg-[#121e31] h-screen left-0 min-w-[250px] py-5 px-3 font-[sans-serif] overflow-auto">
         <div className="flex flex-wrap items-center cursor-pointer">
           <img src="https://readymadeui.com/profile.webp" className="w-10 h-10 rounded-full border-2 border-white" />
           <div className="ml-5">

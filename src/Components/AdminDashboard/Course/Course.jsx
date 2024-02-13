@@ -15,7 +15,7 @@ function Course() {
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [type, setType] = useState();
-  const pageSize = 1; // Number of items per page
+  const pageSize = 10; // Number of items per page
 
   useEffect(() => {
     getCourseData();
@@ -64,7 +64,7 @@ function Course() {
           <Dropdown options={["All", "Active", "Inactive"]} label="Type" />
         </Grid>
         <Grid item xs={4}>
-          <Link to="/admin/school/add">
+          <Link to="/admin/course/add">
             <button
               type="button"
               className="ml-[250px] px-6 flex justify-items-end mt-3 py-2.5 rounded text-white text-sm tracking-wider font-semibold border-none outline-none bg-green-600 hover:bg-green-700 active:bg-green-600"
@@ -90,7 +90,7 @@ function Course() {
       <Grid container>
         <Grid item xs={12}>
           <div className="overflow-x-auto">
-            <table className="min-w-full bg-white font-[sans-serif]">
+            <table className="min-w-full bg-white font-[sans-serif] items-center">
               <thead className="bg-gray-800 whitespace-nowrap">
                 <tr>
                   <th className="pr-6 pl-3  py-3 text-left text-sm font-semibold text-white">
