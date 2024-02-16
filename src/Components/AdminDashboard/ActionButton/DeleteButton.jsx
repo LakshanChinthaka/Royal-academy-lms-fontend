@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useToken } from "../../Context/TokenProvider";
 
-function DeleteButton({ schoolId}) {
+function DeleteButton({id,DELETE_URL}) {
   const { ConfirmMessage } = ConfirmAlert();
   const { token } = useToken();
 
@@ -19,17 +19,20 @@ function DeleteButton({ schoolId}) {
       "Cancel"
     );
     console.log(confirmed);
-    console.log("School id -" + schoolId);
+    console.log("School id -" + id);
 
   
 
     if (confirmed) {
       try {
         console.log("Axios");
-        const URL = "http://localhost:8080/api/v1/school/delete?id=" + schoolId;
-        const response = await axios.delete(URL,{
+        // const URL = 
+        const response = await axios.delete(DELETE_URL,{
           headers: {
             Authorization: `Bearer ${token}`,
+          },
+          params: {
+            id: id,
           },
         });
       } catch (error) {

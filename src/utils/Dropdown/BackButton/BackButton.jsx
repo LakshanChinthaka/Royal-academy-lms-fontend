@@ -1,11 +1,11 @@
 import React from "react";
 
-function BackButton({onClick}) {
+function BackButton({ onClick }) {
 
   return (
     <div>
       <button
-     onClick={onClick}
+        onClick={onClick}
         type="button"
         className="w-[80px] h-10 inline-flex items-center justify-center rounded border-none outline-none bg-green-600 hover:bg-blue-700 active:bg-blue-600"
       >

@@ -11,6 +11,7 @@ function School() {
   const [schoolDetails, setSchooldetails] = useState([]);
   const [filterStatus, setFilterStatus] = useState("All");
   const { token } = useToken();
+  const DELETE_URL = "http://localhost:8080/api/v1/school/delete";
 
   useEffect(() => {
     getSchoolData();
@@ -150,7 +151,7 @@ function School() {
                         <EditButton />
                       </Link>
 
-                      <DeleteButton schoolId={data.schoolID} />
+                      <DeleteButton id={data.schoolID} DELETE_URL={DELETE_URL} />
                     </td>
                     {/* Add other columns here */}
                   </tr>

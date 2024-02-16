@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SuccessAlert from "../../../utils/SuccessAlert";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import BackButton from "../../../utils/Dropdown/BackButton/BackButton";
 import { useToken } from "../../Context/TokenProvider";
 import AutocompleteComponent from "../../../page/SignInPage/AutocompleteComponent";
 import Swal from "sweetalert2";
 import ConfirmAlert from "../../../utils/ConfiramAlert";
 
-function CourseCreate() {
+// TODO: Need fix course update error
+function CourseUpdate() {
   const { token } = useToken();
   const SCHOOL_URL = "http://localhost:8080/api/v1/school/find-all";
   const TYPE_URL = "http://localhost:8080/api/v1/enum/type";
   const CATEGORY_URL = "http://localhost:8080/api/v1/enum/category";
   const MEDIUM_URL = "http://localhost:8080/api/v1/enum/medium";
-  const COURSE_ADD_URL = "http://localhost:8080/api/v1/course/add";
+  const COURSE_UPDATE_URL = "http://localhost:8080/api/v1/course/edit";
 
   // Message
   const { SuccessMessage } = SuccessAlert();
@@ -22,9 +23,12 @@ function CourseCreate() {
 
   const navigate = useNavigate();
 
+  //Get school id and code from parameter link
+  const { id, code } = useParams();
+
   const [formData, setFormData] = useState({
-    courseId: 0,
-    code: "",
+    // courseId: 0,
+    // code: code,
     name: "",
     description: "",
     schoolId: "",
@@ -76,17 +80,20 @@ function CourseCreate() {
 
     if (confirmed) {
       try {
-        const res = await axios.post(COURSE_ADD_URL, formData, {
+        const res = await axios.put(COURSE_UPDATE_URL, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
+          },
+          params: {
+            id: id,
           },
         });
 
         const confirmed = await SuccessMessage(res.data.data, "success");
 
         setFormData({
-          courseId: 0,
-          code: "",
+          //   courseId: 0,
+          //   code: "",
           name: "",
           description: "",
           schoolId: "",
@@ -99,7 +106,6 @@ function CourseCreate() {
           totalCredit: "",
         });
         navigate(-1);
-
       } catch (error) {
         const confirmed = await SuccessMessage(
           error.response.data.data,
@@ -108,20 +114,20 @@ function CourseCreate() {
       }
     } else {
       Swal.fire("Sumbit Cancelled", "", "info");
-      setFormData({
-        courseId: 0,
-        code: "",
-        name: "",
-        description: "",
-        schoolId: "",
-        courseType: null,
-        category: null,
-        medium: null,
-        duration: "",
-        fees: "",
-        totalHours: "",
-        totalCredit: "",
-      });
+      //   setFormData({
+      //     courseId: 0,
+      //     // code: "",
+      //     name: "",
+      //     description: "",
+      //     schoolId: "",
+      //     courseType: null,
+      //     category: null,
+      //     medium: null,
+      //     duration: "",
+      //     fees: "",
+      //     totalHours: "",
+      //     totalCredit: "",
+      //   });
     }
   };
 
@@ -145,12 +151,14 @@ function CourseCreate() {
                 Course Code
               </label>
               <input
-                value={formData.code}
-                onChange={handleChange}
+                value={code}
+                // value={formData.code}
+                // onChange={handleChange}
+                readOnly
                 required
                 name="code"
                 type="text"
-                class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
+                class="bg-yellow-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
                 placeholder="Enter name"
               />
             </div>
@@ -159,7 +167,6 @@ function CourseCreate() {
               <input
                 value={formData.name}
                 onChange={handleChange}
-                required
                 name="name"
                 type="text"
                 class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
@@ -174,7 +181,6 @@ function CourseCreate() {
                 max={5}
                 value={formData.description}
                 onChange={handleChange}
-                required
                 maxLength={300}
                 name="description"
                 type="text"
@@ -242,7 +248,6 @@ function CourseCreate() {
               <input
                 value={formData.duration}
                 onChange={handleChange}
-                required
                 name="duration"
                 type="text"
                 class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
@@ -256,7 +261,6 @@ function CourseCreate() {
               <input
                 value={formData.fees}
                 onChange={handleChange}
-                required
                 name="fees"
                 type="text"
                 class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
@@ -270,7 +274,6 @@ function CourseCreate() {
               <input
                 value={formData.totalHours}
                 onChange={handleChange}
-                required
                 name="totalHours"
                 type="text"
                 class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
@@ -284,7 +287,6 @@ function CourseCreate() {
               <input
                 value={formData.totalCredit}
                 onChange={handleChange}
-                required
                 name="totalCredit"
                 type="text"
                 class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
@@ -307,4 +309,4 @@ function CourseCreate() {
   );
 }
 
-export default CourseCreate;
+export default CourseUpdate;

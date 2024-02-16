@@ -16,6 +16,7 @@ function SchoolUpdate() {
     schoolName: "",
   });
 
+  //Get school id and code from parameter link
   const { id, code } = useParams();
 
   console.log("School ID:", id);
