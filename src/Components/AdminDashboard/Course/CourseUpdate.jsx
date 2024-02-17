@@ -114,20 +114,7 @@ function CourseUpdate() {
       }
     } else {
       Swal.fire("Sumbit Cancelled", "", "info");
-      //   setFormData({
-      //     courseId: 0,
-      //     // code: "",
-      //     name: "",
-      //     description: "",
-      //     schoolId: "",
-      //     courseType: null,
-      //     category: null,
-      //     medium: null,
-      //     duration: "",
-      //     fees: "",
-      //     totalHours: "",
-      //     totalCredit: "",
-      //   });
+
     }
   };
 

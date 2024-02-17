@@ -17,8 +17,7 @@ function Course() {
   // Pagination
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-  const [type, setType] = useState();
-  const pageSize = 10; // Number of items per page
+  const pageSize = 2; // Number of items per page
 
   // URLs
   const URL = "http://localhost:8080/api/v1/course/find-all";
@@ -49,9 +48,6 @@ function Course() {
       console.log(response.data.data);
       console.log("Index-", response.data.data.content[9]);
       const subjectList = response.data.data.content[9].subjectlist;
-
-      // const firstSubjectCode = subjectList;
-      // console.log(firstSubjectCode);
       console.log("Subejct list-", subjectList);
     } catch (error) {
       console.error("Error fetching school data:", error);

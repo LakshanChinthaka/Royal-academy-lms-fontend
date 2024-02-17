@@ -6,7 +6,6 @@ import HomePage from './Components/HomePage/HomePage';
 import Program from './Components/Programs/Programs';
 import CourseInfo from './Components/CourseInfo/CourseInfo';
 import Text from './Components/text/Text';
-import AdminDashboard from './Components/AdminDashboard/AdminDashboard';
 import SignInPage from '../src/page/SignInPage/SignInPage';
 import StudentDashboard from './Components/StudentDashboard/StudentDashboard';
 import StudentTable from './Components/AdminDashboard/StudentsTable/StudentTable';
@@ -26,6 +25,11 @@ import Batch from './Components/AdminDashboard/Batch/Batch';
 import Subject from './Components/AdminDashboard/Subject/Subject';
 import BatchCreate from './Components/AdminDashboard/Batch/BatchCreate';
 import BatchInfo from './Components/AdminDashboard/Batch/BatchInfo';
+import SubjectAssign from './Components/AdminDashboard/Subject/SubjectAssign';
+import StudentEdit from './Components/AdminDashboard/StudentsTable/StudentEdit';
+import StudentInfo from './Components/AdminDashboard/StudentsTable/StudentInfo';
+import AdminPage from './Components/AdminDashboard/AdminPage';
+import AdminDashboard from './Components/AdminDashboard/Dashboard/AdminDashboard';
 
 
 
@@ -61,29 +65,34 @@ function App() {
             {userRole === "ROLE_ADMIN" && (
               <>
                 {/* Adminside bar */}
-                <Route path='/admin/dashboard' element={<AdminDashboard />} />
-                <Route path="/admin/assignments" element={<AdminDashboard><Assigment /></AdminDashboard>} />
-                <Route path="/admin/registration" element={<AdminDashboard><Registration /></AdminDashboard>} />
-                <Route path="/admin/students" element={<AdminDashboard><StudentTable /></AdminDashboard>} />
-                <Route path="/admin/inbox" element={<AdminDashboard><Inbox /></AdminDashboard>} />
-                <Route path="/admin/profile" element={<AdminDashboard><ProfilePage /></AdminDashboard>} />
+                <Route path='/admin' element={<AdminPage/>} />
+                <Route path='/admin/dashboard' element={<AdminPage><AdminDashboard/></AdminPage>} />
+                <Route path="/admin/assignments" element={<AdminPage><Assigment /></AdminPage>} />
+                <Route path="/admin/registration" element={<AdminPage><Registration /></AdminPage>} />
+                <Route path="/admin/students" element={<AdminPage><StudentTable /></AdminPage>} />
+                <Route path="/admin/inbox" element={<AdminPage><Inbox /></AdminPage>} />
+                <Route path="/admin/profile" element={<AdminPage><ProfilePage /></AdminPage>} />
                 {/* School */}
-                <Route path="/admin/school" element={<AdminDashboard><School /></AdminDashboard>} />
-                <Route path="/admin/school/add" element={<AdminDashboard><SchoolCreate /></AdminDashboard>} />
-                <Route path="/admin/school/update/:id/:code" element={<AdminDashboard><SchoolUpdate /></AdminDashboard>} />
+                <Route path="/admin/school" element={<AdminPage><School /></AdminPage>} />
+                <Route path="/admin/school/add" element={<AdminPage><SchoolCreate /></AdminPage>} />
+                <Route path="/admin/school/update/:id/:code" element={<AdminPage><SchoolUpdate /></AdminPage>} />
                 {/* Course */}
-                <Route path="/admin/course/" element={<AdminDashboard><Course /></AdminDashboard>} />
-                <Route path="/admin/course/add" element={<AdminDashboard><CourseCreate/></AdminDashboard>} />
-                <Route path="/admin/course/update/:id/:code" element={<AdminDashboard><CourseUpdate/></AdminDashboard>} />
+                <Route path="/admin/course/" element={<AdminPage><Course /></AdminPage>} />
+                <Route path="/admin/course/add" element={<AdminPage><CourseCreate/></AdminPage>} />
+                <Route path="/admin/course/update/:id/:code" element={<AdminPage><CourseUpdate/></AdminPage>} />
                 <Route path="/admin/course/info/:id/:code/:courseType/:category/:name/:duration/:medium/:schoolName/:fees/:createBy/:createdDate/:modifiedBy/:modifiedData/:totalCredit/:totalHours" element={<AdminDashboard><AdminCourseInfo/></AdminDashboard>} />
                 {/* Batch */}
-                <Route path="/admin/batch" element={<AdminDashboard><Batch/></AdminDashboard>} />
-                <Route path="/admin/batch/add" element={<AdminDashboard><BatchCreate/></AdminDashboard>} />
-                <Route path="/admin/batch/info/:id " element={<AdminDashboard><BatchInfo/></AdminDashboard>} />
+                <Route path="/admin/batch" element={<AdminPage><Batch/></AdminPage>} />
+                <Route path="/admin/batch/add" element={<AdminPage><BatchCreate/></AdminPage>} />
+                <Route path="/admin/batch/info/:id " element={<AdminPage><BatchInfo/></AdminPage>} />
                 {/* Subject */}
-                <Route path="/admin/subject" element={<AdminDashboard><Subject/></AdminDashboard>} />
+                <Route path="/admin/subject" element={<AdminPage><Subject/></AdminPage>} />
+                <Route path="/admin/subject/assign/:id/:name/:code" element={<AdminPage><SubjectAssign/></AdminPage>} />
+                {/* Student */}
+                <Route path="/admin/subject/update/:id" element={<AdminPage><StudentEdit/></AdminPage>} />
+                <Route path="/admin/student/info/:id" element={<AdminPage><StudentInfo/></AdminPage>} />
               </> 
-             )}/admin/course/info
+             )}
 
             {userRole === "ROLE_USER" && ( 
               <>
@@ -93,7 +102,6 @@ function App() {
           </Routes>
           <Footer />
         </BrowserRouter>
-
         </TokenProvider>
     </>
   );

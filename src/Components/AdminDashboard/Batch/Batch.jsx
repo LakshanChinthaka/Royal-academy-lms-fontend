@@ -82,8 +82,8 @@ function Batch() {
           Total Batch- {totalElements}
         </h2>
 
-        <h2 class="inline-block text-xl justify-items-center ml-[450px] mt-2  font-bold text-gray-700">
-          Batch
+        <h2 class="inline-block text-xl justify-items-center ml-[400px] mt-2  font-bold text-gray-700">
+          All Batch
         </h2>
       </div>
 
@@ -188,6 +188,7 @@ function Batch() {
             </Stack>
           </div>
         </div>
+        
       </div>
     </div>
   );

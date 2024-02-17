@@ -4,6 +4,7 @@ import Button from "../Button/Button";
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import Border from "../Border/Border";
+import EditButton from "../../Components/AdminDashboard/ActionButton/EditButton";
 
 function Table({ id, title, URL, headers, tableHeaders, itemName }) {
     const [tableData, setTableData] = useState([]);

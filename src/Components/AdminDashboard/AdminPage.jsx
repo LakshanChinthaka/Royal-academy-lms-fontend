@@ -2,10 +2,10 @@ import SideBar from "./AdminSideBar/AdminSideBar";
 import { Grid } from "@mui/material";
 
 
-function AdminDashboard({children}) {
+function AdminPage({children}) {
 
   return (
-    <div>
+    <div className="">
       <Grid container>
         <Grid className="min-h-screen "item xs={2}>
           <SideBar />
@@ -22,4 +22,4 @@ function AdminDashboard({children}) {
   );
 }
 
-export default AdminDashboard;
+export default AdminPage;

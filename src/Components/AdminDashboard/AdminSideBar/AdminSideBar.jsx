@@ -6,7 +6,7 @@ import SchoolCreate from '../School/SchoolCreate';
 function AdminSideBar() {
 
   const AdminSideBarItems = [
-    // { path: '/admin/dashboard', label: 'Dashboard' },
+    { path: '/admin/dashboard', label: 'Dashboard' },
     { path: '/admin/students', label: 'Students' },
     { path: '/admin/assignments', label: 'Assignments'},
     { path: '/admin/registration', label: 'Student Registration'},

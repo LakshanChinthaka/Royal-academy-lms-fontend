@@ -4,19 +4,16 @@ import logo from "../../assets/academy-logo.png";
 import { Link } from "react-router-dom";
 import LogOutButton from "../logoutButton/LogOutButton";
 
-
 function NavBar({ userRole }) {
-
   return (
     <>
-      <header class="shadow-md py-4 px-4 sm:px-10 bg-white font-[sans-serif] min-h-[30px]">
-        <div class="flex flex-wrap items-center justify-between gap-5 relative">
+      <header className="shadow-md py-4 px-4 sm:px-10 bg-white font-[sans-serif] min-h-[30px]">
+        <div className="flex flex-wrap items-center justify-between gap-5 relative">
           <Link to="/">
-            <a href="javascript:void(0)">
-              <img src={logo} className="w-[250px]" alt="logo" />
-            </a>
+            <img src={logo} className="w-[250px]" alt="logo" />
           </Link>
-          <div class="flex lg:order-1 max-sm:ml-auto">
+
+          <div className="flex lg:order-1 max-sm:ml-auto">
             {userRole ? (
               <LogOutButton />
             ) : (
@@ -26,17 +23,17 @@ function NavBar({ userRole }) {
                 </button>
               </Link>
             )}
-            <button id="toggle" class="lg:hidden ml-7">
+            <button id="toggle" className="lg:hidden ml-7">
               <svg
-                class="w-7 h-7"
+                className="w-7 h-7"
                 fill="#000"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </button>

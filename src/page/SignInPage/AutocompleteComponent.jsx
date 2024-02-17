@@ -31,7 +31,7 @@ const AutocompleteComponent = ({ endpoint, headers, getOptionLabel, clearOnEscap
     const handleSelectionChange = (event, value) => {
         setSelectedOption(value); // Update selected option state
         onChange(value); // Pass selected option to parent component
-        console.log("Scool Id-",value.schoolID)
+        // console.log("Scool Id-",value.schoolID)
     };
 
 
