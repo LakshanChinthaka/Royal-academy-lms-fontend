@@ -54,7 +54,7 @@ function StudentTable() {
     "Profile",
     "Course",
     "Batch",
-    "Contact no",
+    "Email",
     "Gender",
     "Address",
     "Action",
@@ -92,7 +92,7 @@ function StudentTable() {
                   {studentData.map((data, index) => (
                     <tr key={index} className="even:bg-blue-50">
                       <td class="px-6 py-3 text-sm">
-                        <div class="flex items-center cursor-pointer">
+                        <div class="flex items-center">
                           <img
                             src="https://readymadeui.com/profile_4.webp"
                             class="w-9 h-9 rounded-full shrink-0"
@@ -101,15 +101,15 @@ function StudentTable() {
                             <p class="text-sm text-black">
                               {data.firstName + " " + data.lastName}
                             </p>
-                            <p class="text-xs text-gray-400">{data.nic}</p>
+                            <p class="text-xs text-gray-400">NIC: {data.nic}</p>
                           </div>
                         </div>
                       </td>
                       <td class="px-6 py-3 whitespace-normal text-sm ">
-                        {data.enroll == null ? "--" : data.enroll.courseName}
+                        {data.enroll == null ? "No enroll": `${data.enroll.courseName}`}
                       </td>
                       <td class="px-6 py-3 text-sm ">
-                        {data.enroll == null ? "--" : data.enroll.batchCode}
+                        {data.enroll == null ? "No enroll" : data.enroll.batchCode}
                       </td>
                       <td class="px-6 py-3 text-sm ">{data.mobileNo}</td>
                       <td class="px-6 py-3 text-sm ">{data.gender}</td>
@@ -128,8 +128,9 @@ function StudentTable() {
                       </td>
                       <td class="pr-2 pl-4 py-1 text-sm text-left">
                         <Link
-                          to={`/admin/student/info/${data.id}`}
-                        >
+                          // to={`/admin/student/info/${data.id}`}
+                          to={`/admin/student/info/${data.id}/${data.firstName}/${data.lastName}/${data.nic}/${data.mobileNo}/${data.gender}/${data.dob}/${data.activeStatus}/${data.imageUrl}/${data.address}/${data.enroll && data.enroll.enrollId != null ? data.enroll.enrollId : ""}/${data.enroll && data.enroll.batchId != null ? data.enroll.batchId : ""}/${data.enroll && data.enroll.batchCode != null ? data.enroll.batchCode : ""}/${data.enroll && data.enroll.courseId != null ? data.enroll.courseId : ""}/${data.enroll && data.enroll.courseName != null ? data.enroll.courseName : ""}/${data.enroll && data.enroll.enrollDate != null ? data.enroll.enrollDate : ""}`}
+                          >
                           <svg
                             fill="#0071e1"
                             version="1.1"

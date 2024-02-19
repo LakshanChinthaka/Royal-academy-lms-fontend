@@ -14,8 +14,8 @@ function AdminSideBar() {
     { path: '/admin/school', label: 'School'},
     { path: '/admin/batch', label: 'Batch' },
     { path: '/admin/subject', label: 'Subject' },
-    { path: '/admin/inbox', label: 'Inbox' },
-    // { path: '/admin/refunds', label: 'Refunds'},
+    { path: '/admin/account', label: 'Account'},
+    { path: '/admin/mail/indox', label: 'Mail Inbox' },
     { path: '/admin/profile', label: 'Profile'},
   ];
 

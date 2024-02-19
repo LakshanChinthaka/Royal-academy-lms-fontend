@@ -176,6 +176,8 @@ function Registration() {
                       <input
                         value={formData.mobileNo}
                         onChange={handleChange}
+                        minLength={10} 
+                        maxLength={10} 
                         name="mobileNo"
                         type="text" // Change type to "text" for a text input
                         className="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
@@ -191,6 +193,8 @@ function Registration() {
                         value={formData.nic}
                         onChange={handleChange}
                         required
+                        minLength={10} 
+                        maxLength={12} 
                         name="nic"
                         type="text"
                         class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"

@@ -188,6 +188,7 @@ function AdminCourseInfo() {
                   "Last modify by",
                   "Last modified data",
                   "Status",
+                  "Student Assign",
                   "View",
                 ]}
                 id={id}

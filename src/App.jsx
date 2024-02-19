@@ -11,7 +11,7 @@ import StudentDashboard from './Components/StudentDashboard/StudentDashboard';
 import StudentTable from './Components/AdminDashboard/StudentsTable/StudentTable';
 import Assigment from './Components/AdminDashboard/Assignment/Assigment';
 import Registration from './Components/AdminDashboard/Registration/Registration';
-import Inbox from './Components/AdminDashboard/Inbox';
+import Inbox from '../src/Components/AdminDashboard/MailIndox/Inbox';
 import ProfilePage from './Components/ProfilePage/ProfilePage';
 import School from './Components/AdminDashboard/School/School';
 import SchoolCreate from './Components/AdminDashboard/School/SchoolCreate';
@@ -30,6 +30,9 @@ import StudentEdit from './Components/AdminDashboard/StudentsTable/StudentEdit';
 import StudentInfo from './Components/AdminDashboard/StudentsTable/StudentInfo';
 import AdminPage from './Components/AdminDashboard/AdminPage';
 import AdminDashboard from './Components/AdminDashboard/Dashboard/AdminDashboard';
+import Account from './Components/AdminDashboard/Account/Account';
+import StudentAssignToBatch from './Components/AdminDashboard/Batch/StudentAssignToBatch';
+import MailSend from './Components/AdminDashboard/MailIndox/MailSend';
 
 
 
@@ -41,20 +44,20 @@ function App() {
   const getUserRole = () => {
     const storedUserRole = localStorage.getItem("userRole");
     setUserRole(storedUserRole);
- 
+
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getUserRole();
-  },[]);
+  }, []);
 
   console.log("User role in app.jsx- ", userRole)
 
   return (
     <>
-   <TokenProvider>
+      <TokenProvider>
         <BrowserRouter>
-          <NavBar   userRole={userRole}/>
+          <NavBar userRole={userRole} />
           <Routes>
             <Route path="/" element={<HomePage logout />} />
             <Route path="/login" element={<SignInPage />} />
@@ -65,12 +68,12 @@ function App() {
             {userRole === "ROLE_ADMIN" && (
               <>
                 {/* Adminside bar */}
-                <Route path='/admin' element={<AdminPage/>} />
-                <Route path='/admin/dashboard' element={<AdminPage><AdminDashboard/></AdminPage>} />
+                <Route path='/admin' element={<AdminPage />} />
+                <Route path='/admin/dashboard' element={<AdminPage><AdminDashboard /></AdminPage>} />
                 <Route path="/admin/assignments" element={<AdminPage><Assigment /></AdminPage>} />
                 <Route path="/admin/registration" element={<AdminPage><Registration /></AdminPage>} />
                 <Route path="/admin/students" element={<AdminPage><StudentTable /></AdminPage>} />
-                <Route path="/admin/inbox" element={<AdminPage><Inbox /></AdminPage>} />
+                <Route path="/admin/mail/indox" element={<AdminPage><Inbox /></AdminPage>} />
                 <Route path="/admin/profile" element={<AdminPage><ProfilePage /></AdminPage>} />
                 {/* School */}
                 <Route path="/admin/school" element={<AdminPage><School /></AdminPage>} />
@@ -78,23 +81,33 @@ function App() {
                 <Route path="/admin/school/update/:id/:code" element={<AdminPage><SchoolUpdate /></AdminPage>} />
                 {/* Course */}
                 <Route path="/admin/course/" element={<AdminPage><Course /></AdminPage>} />
-                <Route path="/admin/course/add" element={<AdminPage><CourseCreate/></AdminPage>} />
-                <Route path="/admin/course/update/:id/:code" element={<AdminPage><CourseUpdate/></AdminPage>} />
-                <Route path="/admin/course/info/:id/:code/:courseType/:category/:name/:duration/:medium/:schoolName/:fees/:createBy/:createdDate/:modifiedBy/:modifiedData/:totalCredit/:totalHours" element={<AdminDashboard><AdminCourseInfo/></AdminDashboard>} />
+                <Route path="/admin/course/add" element={<AdminPage><CourseCreate /></AdminPage>} />
+                <Route path="/admin/course/update/:id/:code" element={<AdminPage><CourseUpdate /></AdminPage>} />
+                <Route path="/admin/course/info/:id/:code/:courseType/:category/:name/:duration/:medium/:schoolName/:fees/:createBy/:createdDate/:modifiedBy/:modifiedData/:totalCredit/:totalHours" element={<AdminPage><AdminCourseInfo /></AdminPage>} />
                 {/* Batch */}
-                <Route path="/admin/batch" element={<AdminPage><Batch/></AdminPage>} />
-                <Route path="/admin/batch/add" element={<AdminPage><BatchCreate/></AdminPage>} />
-                <Route path="/admin/batch/info/:id " element={<AdminPage><BatchInfo/></AdminPage>} />
-                {/* Subject */}
-                <Route path="/admin/subject" element={<AdminPage><Subject/></AdminPage>} />
-                <Route path="/admin/subject/assign/:id/:name/:code" element={<AdminPage><SubjectAssign/></AdminPage>} />
-                {/* Student */}
-                <Route path="/admin/subject/update/:id" element={<AdminPage><StudentEdit/></AdminPage>} />
-                <Route path="/admin/student/info/:id" element={<AdminPage><StudentInfo/></AdminPage>} />
-              </> 
-             )}
+                <Route path="/admin/batch" element={<AdminPage><Batch /></AdminPage>} />
+                <Route path="/admin/batch/add" element={<AdminPage><BatchCreate /></AdminPage>} />
+                <Route path="/admin/batch/info/:id " element={<AdminPage><BatchInfo /></AdminPage>} />
+                <Route path="/admin/batch/assign/:id/:code" element={<AdminPage><StudentAssignToBatch /></AdminPage>} />
 
-            {userRole === "ROLE_USER" && ( 
+                {/* Subject */}
+                <Route path="/admin/subject" element={<AdminPage><Subject /></AdminPage>} />
+                <Route path="/admin/subject/assign/:id/:name/:code" element={<AdminPage><SubjectAssign /></AdminPage>} />
+                {/* Student */}
+                <Route path="/admin/subject/update/:id" element={<AdminPage><StudentEdit /></AdminPage>} />
+                {/* <Route path="/admin/student/info/:id" element={<AdminPage><StudentInfo/></AdminPage>} /> */}
+                {/* <Route path="/admin/student/info/:id/:firstName/:lastName/:nic/:mobileNo/:gender/:dob/:activeStatus/:imageUrl/:address/:enrollId/:batchId/:batchCode/:courseId/:courseName/:enrollDate" element={<AdminPage><StudentInfo/></AdminPage>} /> */}
+                {/* Account */}
+
+                <Route path="/admin/account" element={<AdminPage><Account /></AdminPage>} />
+                
+                {/* Mail */}
+                <Route path="/admin/mail/send" element={<AdminPage><MailSend /></AdminPage>} />
+              </>
+
+            )}
+
+            {userRole === "ROLE_USER" && (
               <>
                 <Route path="/student/dashboard" element={<StudentDashboard />} />
               </>
@@ -102,7 +115,7 @@ function App() {
           </Routes>
           <Footer />
         </BrowserRouter>
-        </TokenProvider>
+      </TokenProvider>
     </>
   );
 }

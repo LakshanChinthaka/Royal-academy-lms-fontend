@@ -59,7 +59,7 @@ function Subject() {
     "Modify by",
     "Modify data",
     "Subject Assign",
-    // "Action",
+    "Action",
   ];
 
   return (
@@ -141,9 +141,9 @@ function Subject() {
                   </button>
                  </Link>
                 </td>
-                {/* <td class="pr-2 pl-4 py-1 text-sm text-left">
+                <td class="pr-2 pl-4 py-1 text-sm text-left">
                   <DeleteButton id={data.subjectId} DELETE_URL={DELETE_URL} />
-                </td> */}
+                </td>
               </tr>
             ))}
           </tbody>

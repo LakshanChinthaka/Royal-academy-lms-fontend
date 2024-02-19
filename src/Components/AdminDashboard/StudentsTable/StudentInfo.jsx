@@ -1,45 +1,54 @@
-import { useEffect, useState } from "react";
+import { useEffect, useStat} from "react";
+import { useLocation } from "react-router-dom";
 import { Grid } from "@mui/material";
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useToken } from "../../Context/TokenProvider";
 import BackButton from "../../../utils/Dropdown/BackButton/BackButton";
 
 function StudentInfo() {
-    const { token } = useToken();
-    const { id } = useParams();
-    const [studentData, setStudentDetails] = useState([]);
+    // const { token } = useToken();
+    // const { id } = useParams();
+//     const [studentData, setStudentDetails] = useState([]);
 
-    const GET_STUDENT_URL = "http://localhost:8080/api/v1/student/find";
+const location = useLocation();
+const { studentData } = location.state; // Access the passed state
 
-    useEffect(() => {
-        getData();
-        console.log("Student data- ", studentData)
-        console.log("id-", id)
-    }, [])
+// console.log(studentData)
 
-    const getData = async () => {
-        try {
-            const res = await axios.get(GET_STUDENT_URL, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                params: {
-                    id: id
-                },
-            });
-            console.log("Api data-",res.data.data);
-            // const stData = res.data.data
-            console.log("Api data 2-",stData);
 
-            setStudentDetails(stData);
-            // setStudentDetails(res.data.data);
+//     const GET_STUDENT_URL = "http://localhost:8080/api/v1/student/find";
 
-        } catch (error) {
-            console.error("Error fetching data:", error);
-            // Handle error, e.g., set an error state
-        }
-    };
+//     useEffect(() => {
+//         getData();
+
+//         console.log("id-", id)
+//     }, [])
+
+//     const getData = async () => {
+//         try {
+//             const res = await axios.get(GET_STUDENT_URL, {
+//                 headers: {
+//                     Authorization: `Bearer ${token}`,
+//                 },
+//                 params: {
+//                     id: id
+//                 },
+//             });
+//             console.log("Api data-",res.data.data);
+//             const stData = res.data.data
+
+
+//             setStudentDetails(stData);
+
+
+//         } catch (error) {
+//             console.error("Error fetching data:", error);
+//         }
+//     };
+
+// console.log("New data",studentData)
+// console.log("Name",studentData.firstName)
 
     return (
         <div>
@@ -53,8 +62,7 @@ function StudentInfo() {
                             Student Information
                         </h2>
                     </div>
-                    {/* {studentData.map((data, index) => ( */}
-                         {/* <React.Fragment key={index}> */}
+
                             <Grid container spacing={2} columns={3}>
 
                                 <Grid item xs={1}>
@@ -64,8 +72,8 @@ function StudentInfo() {
                                             src={"https://readymadeui.com/team-1.webp"}
                                             class="w-[200px] h-[200px] rounded-full"
                                         />
-                                        <h4 class="text-xl text-[#333] font-bold mt-3">{""}</h4>
-                                        <p class="text-sm text-gray-500 mt-1">{"data.nic"}</p>
+                                        <h4 class="text-xl text-[#333] font-bold mt-3">{studentData.firstName}</h4>
+                                        <p class="text-sm text-gray-500 mt-1">{"data.lastName"}</p>
                                     </div>
                                 </Grid>
 
@@ -80,7 +88,7 @@ function StudentInfo() {
                                                         Course
                                                     </td>
                                                     <td class="px-6 py-2 text-gray-500 text-text-sm">
-                                                        {/* {data.mobileNo} */}
+                                                        {"data.mobileNo"}
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -152,8 +160,7 @@ function StudentInfo() {
                                 </div>
 
                             </Grid>
-                            {/* </React.Fragment> */}
-                    {/* ))} */}
+
                 </Grid>
 
             </Grid>

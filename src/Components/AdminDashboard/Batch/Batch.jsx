@@ -58,6 +58,7 @@ function Batch() {
     "No of Student",
     "Course",
     "School",
+    "Student Assign",
     "Action",
     "Info",
   ];
@@ -123,14 +124,38 @@ function Batch() {
                     </span>
                   )}
                 </td>
-                <td class="pr-2 pl-4 py-1 text-sm text-left">15</td>
+                <td class="pr-2 pl-4 py-1 text-sm text-center">15</td>
                 <td class="pr-2 pl-4 py-1 text-sm text-left">
                   {data.courseName}
                 </td>
                 <td class="pr-2 pl-4 py-1 text-sm text-left">
                   {data.schoolName}
                 </td>
-                <td class="pr-2 pl-4 py-1 text-sm text-left">
+
+                <td class="pr-2 pl-4 py-1 text-sm text-center">
+                <Link to={`/admin/batch/assign/${data.batchId}/${data.code}`}>
+                 <button
+                    type="button"
+                    class="w-6 h-6 inline-flex items-center justify-center rounded-full border-none outline-none bg-purple-600 hover:bg-purple-700 active:bg-purple-600"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18px"
+                      fill="#fff"
+                      class="inline"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M467 211H301V45c0-24.853-20.147-45-45-45s-45 20.147-45 45v166H45c-24.853 0-45 20.147-45 45s20.147 45 45 45h166v166c0 24.853 20.147 45 45 45s45-20.147 45-45V301h166c24.853 0 45-20.147 45-45s-20.147-45-45-45z"
+                        data-original="#000000"
+                      />
+                    </svg>
+                  </button>
+                 </Link>
+                </td>
+
+
+                <td class="pr-2 pl-4 py-1 text-sm text-center">
                   <DeleteButton id={data.batchId} DELETE_URL={DELETE_URL} />
                 </td>
                 <td class="pr-2 pl-4 py-1 text-sm text-left">
