@@ -33,6 +33,8 @@ import AdminDashboard from './Components/AdminDashboard/Dashboard/AdminDashboard
 import Account from './Components/AdminDashboard/Account/Account';
 import StudentAssignToBatch from './Components/AdminDashboard/Batch/StudentAssignToBatch';
 import MailSend from './Components/AdminDashboard/MailIndox/MailSend';
+import AdminNavBar from './Components/AdminDashboard/AdminNavBar/AdminNavBar';
+import MailInfo from './Components/AdminDashboard/MailIndox/MailInfo';
 
 
 
@@ -57,9 +59,15 @@ function App() {
     <>
       <TokenProvider>
         <BrowserRouter>
-          <NavBar userRole={userRole} />
+
+
+          {/* {(userRole !== "ROLE_ADMIN" && userRole !== "ROLE_USER") && ( */}
+            {/* <NavBar userRole={userRole} /> */}
+        <AdminNavBar userRole={userRole}/> 
+           {/* )} */}
+
           <Routes>
-            <Route path="/" element={<HomePage logout />} />
+            {/* <Route path="/" element={<HomePage logout />} /> */}
             <Route path="/login" element={<SignInPage />} />
             <Route path="/program" element={<Program />} />
             <Route path="/course" element={<CourseInfo />} />
@@ -87,7 +95,7 @@ function App() {
                 {/* Batch */}
                 <Route path="/admin/batch" element={<AdminPage><Batch /></AdminPage>} />
                 <Route path="/admin/batch/add" element={<AdminPage><BatchCreate /></AdminPage>} />
-                <Route path="/admin/batch/info/:id " element={<AdminPage><BatchInfo /></AdminPage>} />
+                <Route path="/admin/batch/info/:id/:code/:courseName/:schoolName" element={<AdminPage><BatchInfo /></AdminPage>} />
                 <Route path="/admin/batch/assign/:id/:code" element={<AdminPage><StudentAssignToBatch /></AdminPage>} />
 
                 {/* Subject */}
@@ -96,13 +104,14 @@ function App() {
                 {/* Student */}
                 <Route path="/admin/subject/update/:id" element={<AdminPage><StudentEdit /></AdminPage>} />
                 {/* <Route path="/admin/student/info/:id" element={<AdminPage><StudentInfo/></AdminPage>} /> */}
-                {/* <Route path="/admin/student/info/:id/:firstName/:lastName/:nic/:mobileNo/:gender/:dob/:activeStatus/:imageUrl/:address/:enrollId/:batchId/:batchCode/:courseId/:courseName/:enrollDate" element={<AdminPage><StudentInfo/></AdminPage>} /> */}
+                <Route path="/admin/student/info/:id/:firstName/:lastName/:nic/:mobileNo/:gender/:dob/:activeStatus/:imageUrl/:address/:enrollId/:batchId/:batchCode/:courseId/:courseName/:enrollDate" element={<AdminPage><StudentInfo/></AdminPage>} />
                 {/* Account */}
 
                 <Route path="/admin/account" element={<AdminPage><Account /></AdminPage>} />
-                
+
                 {/* Mail */}
                 <Route path="/admin/mail/send" element={<AdminPage><MailSend /></AdminPage>} />
+                <Route path="/admin/mail/info/:mailId/:sendTo/:messageBody/:subject/:sendFrom/:createdDate" element={<AdminPage><MailInfo/></AdminPage>} />
               </>
 
             )}
@@ -113,7 +122,10 @@ function App() {
               </>
             )}
           </Routes>
-          <Footer />
+          
+          {/* {(userRole === "ROLE_ADMIN" && userRole == "ROLE_USER") && ( */}
+            {/* <Footer />  */}
+          {/* )} */}
         </BrowserRouter>
       </TokenProvider>
     </>

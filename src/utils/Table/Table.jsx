@@ -48,7 +48,7 @@ function Table({ id, title, URL, headers, tableHeaders, itemName }) {
                         Total {itemName} - {count}
                     </h2>
 
-                    <h2 class="inline-block text-xl ml-[350px] mt-2  font-bold text-gray-700">
+                    <h2 class="inline-block text-xl ml-[450px] mt-2  font-bold text-gray-700">
                         {title}
                     </h2>
 

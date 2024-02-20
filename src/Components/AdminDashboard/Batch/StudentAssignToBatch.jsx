@@ -24,9 +24,10 @@ function StudentAssignToBatch() {
     const { ConfirmMessage } = ConfirmAlert();
 
     const SEARCH_URL = "http://localhost:8080/api/v1/student/find-by-nic";
+    const STUDENT_ENROLL_URL = "http://localhost:8080/api/v1/enroll/add";
 
     const [data, setData] = useState({
-        batchId: id,
+        batchId: parseInt(id),
         studentId: studentId
     });
 
@@ -54,11 +55,12 @@ function StudentAssignToBatch() {
                     role: "STUDENT",
                 },
             });
-
+           
             setSearchData(res.data.data);
             setStudentId(res.data.data.id);
             console.log("Student ID", res.data.data.id);
             console.log("Search Data - ", res.data.data);
+            const confirmed = await SuccessMessage(res.data.message, "success");
         } catch (error) {
             setSearchData([""]); 
             setNic([""]);
@@ -74,14 +76,20 @@ function StudentAssignToBatch() {
 
         const confirmed = await ConfirmMessage(
             "Submit Confirmation",
-            "Are you sure you want to Create?",
-            "Yes, Create",
+            "Are you sure you want to Assign?",
+            "Yes, Assign",
             "Cancel"
         );
 
         if (confirmed) {
+
+            const payload = {
+                batchId: parseInt(id),
+                studentId: studentId
+            };
+
             try {
-                const res = await axios.post(ACCOUNT_CREATE_URL, payload, {
+                const res = await axios.post(STUDENT_ENROLL_URL, payload, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -97,7 +105,7 @@ function StudentAssignToBatch() {
                 );
             }
         } else {
-            Swal.fire("Account creation Cancelled", "", "info");
+            Swal.fire("Process Cancelled", "", "info");
         }
     };
 
@@ -114,7 +122,7 @@ function StudentAssignToBatch() {
                         </h2>
                     </div>
                     <Grid container spacing={2} columns={3}>
-                        <Grid item xs={3} className=" bg-blue-300">
+                        <Grid item xs={3} className=" ">
 
                             <div class="bg-white mt-5 mb-5 ml-[200px] flex px-1 py-1 rounded-full border border-blue-500 overflow-hidden max-w-md mx-auto font-[sans-serif]">
                                 <input
@@ -138,9 +146,9 @@ function StudentAssignToBatch() {
 
 
                         </Grid>
-                        <Grid item xs={1} className=" bg-green-300">
+                        <Grid item xs={1} className=" ">
 
-                            <div className="ml-10 bg-red-200">
+                            <div className="ml-10 ">
                                 <label htmlFor="code" class="mt-4 text-sm mb-2 block text-[#333] font-bold">
                                     Batch code
                                 </label>
@@ -159,7 +167,7 @@ function StudentAssignToBatch() {
 
                         </Grid>
 
-                        <Grid item xs={1} className="m-l-[-150px] bg-slate-300">
+                        <Grid item xs={1} className="m-l-[-150px] ">
                             <div className="ml-5 mr-5">
                                 <label htmlFor="code" class="mt-4 text-sm mb-2 block text-[#333] font-bold">
                                     Subject name
@@ -175,9 +183,11 @@ function StudentAssignToBatch() {
                                     placeholder="Student name"
                                 />
                             </div>
+
+                            
                         </Grid>
 
-                        <Grid item xs={1} className="m-l-[-150px] bg-slate-300">
+                        <Grid item xs={1} className="m-l-[-150px] ">
                             {/* <form onSubmit={handleSubmit}> */}
 
                             <div className="ml-5 mr-5">
@@ -196,8 +206,9 @@ function StudentAssignToBatch() {
                                 />
                             </div>
                             <button
+                            onClick={handleSubmit}
                                 type="submit"
-                                class=" mt-5 max-w-[200px] ml-[220px]  py-3 px-4 text-sm font-semibold rounded text-white bg-blue-500 hover:bg-blue-600 focus:outline-none"
+                                class=" mt-5 max-w-[200px] ml-[70%]  py-3 px-4 text-sm font-semibold rounded text-white bg-blue-500 hover:bg-blue-600 focus:outline-none"
                             >
                                 Submit
                             </button>

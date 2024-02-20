@@ -27,6 +27,7 @@ function Account() {
     password: "",
     role: role,
     userId: id,
+    userNic: nic,
   });
 
   const handleRb = (e) => {
@@ -52,8 +53,8 @@ function Account() {
   console.log("Account", payload);
 
   useEffect(() => {
-    setData({ ...data, userId: id, role: role }); // Update userId in data whenever id changes
-  }, [id, role]); // Trigger effect whenever id changes
+    setData({ ...data, userId: id, role: role, userNic: nic }); // Update userId in data whenever id changes
+  }, [id, role, nic]); // Trigger effect whenever id changes
 
   //Sumbit data
   const handleSubmit = async (e) => {
@@ -125,8 +126,8 @@ function Account() {
   };
 
   return (
-    <div>
-      <div className="mt-10">
+    <div className="justify-center item-center">
+      <div className="mt-10 ml-[10%]">
         <div className="mt-10, ml-10">
           <BackButton onClick={() => navigate(-1)} />
         </div>
@@ -135,7 +136,7 @@ function Account() {
         </h2>
       </div>
 
-      <div className="inline-flex">
+      <div className="inline-flex ml-[10%]">
         {/* Search feild */}
         <div class="bg-white mt-5 mb-5 ml-[200px] flex px-1 py-1 rounded-full border border-blue-500 overflow-hidden max-w-md mx-auto font-[sans-serif]">
           <input
@@ -181,7 +182,7 @@ function Account() {
           </div>
         </div>
       </div>
-      <div className="flex ml-[105px] mt-10 mb-5">
+      <div className="flex ml-[16%] mt-10 mb-5">
         <p className="text-sm font-bold text-gray-700 ml-[100px]">
           Name: {SearchData.firstName ? SearchData.firstName : "-"}{" "}
           {SearchData.lastName ? SearchData.lastName : "-"}

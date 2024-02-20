@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import axios from 'axios';
 
-const AutocompleteComponent = ({ endpoint, headers, getOptionLabel, clearOnEscape, label, onChange  }) => {
+const AutocompleteComponent = ({ endpoint, headers, getOptionLabel, clearOnEscape, label, onChange, width  }) => {
 
     const [options, setOptions] = useState([]);
     const [selectedOption, setSelectedOption] = useState(null); // State to hold the selected option
@@ -36,7 +36,7 @@ const AutocompleteComponent = ({ endpoint, headers, getOptionLabel, clearOnEscap
 
 
     return (
-        <Stack spacing={1} sx={{ width: 300 }}>
+        <Stack spacing={1} sx={{ width: width }}>
             <Autocomplete
                 id="clear-on-escape"
                 options={options}

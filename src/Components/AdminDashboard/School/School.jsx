@@ -44,9 +44,9 @@ function School() {
   //filter data
   const filteredSchoolDetails = schoolDetails.filter(
     (school) =>
-      filterStatus === "All" ||
-      school.activeStatus === (filterStatus === "Active")
+      filterStatus === "All" || school.activeStatus === (filterStatus === "Active")
   );
+
   const handleFilterSelect = (selectedOption) => {
     setFilterStatus(selectedOption); // Update filterStatus
   };
@@ -92,30 +92,30 @@ function School() {
         <Grid item xs={12}>
           <div className="overflow-x-auto">
             <table className="min-w-full bg-white font-[sans-serif]">
-              <thead class="bg-gray-800 whitespace-nowrap">
+              <thead class="bg-gray-300 whitespace-nowrap">
                 <tr>
-                  <th class="pr-6 pl-3  py-3 text-left text-sm font-semibold text-white">
+                  <th class="pr-6 pl-3  py-3 text-left text-sm font-semibold text-gray-700">
                     Code
                   </th>
-                  <th class="px-6 py-3 text-left text-sm font-semibold text-white">
+                  <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">
                     Name
                   </th>
-                  <th class="px-6 py-3 text-left text-sm font-semibold text-white">
+                  <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">
                     Status
                   </th>
-                  <th class="px-6 py-3 text-left text-sm font-semibold text-white">
+                  <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">
                     Create Date
                   </th>
-                  <th class="px-6 py-3 text-left text-sm font-semibold text-white">
+                  <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">
                     Create By
                   </th>
-                  <th class="px-6 py-3 text-left text-sm font-semibold text-white">
+                  <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">
                     Modify Date
                   </th>
-                  <th class="px-6 py-3 text-left text-sm font-semibold text-white">
+                  <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">
                     Modify By
                   </th>
-                  <th class="px-6 py-3 text-left text-sm font-semibold text-white">
+                  <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">
                     Actions
                   </th>
                 </tr>

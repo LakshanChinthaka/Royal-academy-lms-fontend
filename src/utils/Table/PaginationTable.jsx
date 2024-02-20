@@ -56,7 +56,7 @@ function PaginationTable({ id, title, URL, headers, tableHeaders, itemName }) {
           <h2 class="inline-block text-sm pr-10 mb-1 pl-5 font-bold text-gray-700 ">
             Total {itemName} - {totalElements}
           </h2>
-          <h2 class="inline-block text-xl ml-[350px] mt-2  font-bold text-gray-700">
+          <h2 class="inline-block text-xl ml-[450px] mt-2  font-bold text-gray-700">
             {title}
           </h2>
 
@@ -86,7 +86,7 @@ function PaginationTable({ id, title, URL, headers, tableHeaders, itemName }) {
                   class="even:bg-blue-50"
                 >
                   <td class="pr-2 pl-4 py-3 text-sm text-left">{data.code}</td>
-                  <td class="pr-2 pl-4 py-1 text-sm text-left">{15}</td>
+                  <td class="pr-2 pl-4 py-1 text-sm text-left">{data.count}</td>
                   <td class="pr-2 pl-4 py-1 text-sm text-left">
                     {data.createBy}
                   </td>

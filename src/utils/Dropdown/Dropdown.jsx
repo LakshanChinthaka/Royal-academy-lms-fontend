@@ -14,7 +14,7 @@ function Dropdown({ options, onSelect, label }) {
 
   return (
     <div>
-      <div className="relative font-[sans-serif] w-max mb-3 mt-3 ml-[100px]  justify-items-start">
+      <div className="relative font-[sans-serif] w-max mb-3 mt-3 ml-7  justify-items-start">
         <button
           onClick={handleOpen}
           type="button"

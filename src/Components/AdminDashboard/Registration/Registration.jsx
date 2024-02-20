@@ -92,7 +92,7 @@ function Registration() {
         <Grid item xs={4}></Grid>
         <Grid item xs={4}></Grid>
         <Grid item xs={4}></Grid>
-        <Grid item xs={10}>
+        <Grid item xs={12}>
           <Grid container>
             <Grid item xs={12}>
               <div class="max-w-4xl mx-auto font-[sans-serif] text-[#333] p-6">

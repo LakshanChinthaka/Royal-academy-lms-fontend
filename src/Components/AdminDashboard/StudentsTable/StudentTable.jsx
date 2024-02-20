@@ -7,10 +7,14 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import EditButton from "../ActionButton/EditButton";
 import DeleteButton from "../ActionButton/DeleteButton";
+import SuccessAlert from "../../../utils/SuccessAlert";
 
 function StudentTable() {
   const { token } = useToken();
+  const { SuccessMessage } = SuccessAlert();
+
   const [studentData, setStudentData] = useState([]);
+
   const STUDENT_URL = "http://localhost:8080/api/v1/student/find";
   const STUDENT_DELETE_URL =
     "http://localhost:8080/api/v1/student/delete-by-id";
@@ -18,6 +22,7 @@ function StudentTable() {
   // Pagination
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const [totalElement, setTotalElement] = useState(0);
   const pageSize = 10; // Number of items per page
 
   //Pagination
@@ -44,9 +49,14 @@ function StudentTable() {
 
       setStudentData(res.data.data.content);
       setTotalPages(res.data.data.totalPages);
+      setTotalElement(res.data.data.totalElements)
       console.log("Content-", res.data.data.content);
     } catch (error) {
-      console.error("Error fetching school data:", error);
+      const confirmed = await SuccessMessage(
+        error.response.data.data,
+        "error"
+      );
+      console.error("Error fetching Student data:", error);
     }
   };
 
@@ -57,8 +67,8 @@ function StudentTable() {
     "Email",
     "Gender",
     "Address",
+    "City",
     "Action",
-    "Info",
   ];
 
   return (
@@ -72,6 +82,12 @@ function StudentTable() {
         </Grid>
         <Grid container>
           <Grid item xs={12}>
+          
+          <h2 class="inline-block text-sm pr-10 mb-2 ml-3  font-bold text-gray-700">
+          Total Student- {totalElement}
+        </h2>
+
+
             <div class="overflow-x-auto pb-8">
               <table class="min-w-full bg-white font-[sans-serif]">
                 <thead class="bg-gray-800 whitespace-nowrap">
@@ -87,7 +103,7 @@ function StudentTable() {
                     ))}
                   </tr>
                 </thead>
-
+                      
                 <tbody class="whitespace-nowrap divide-y divide-gray-200">
                   {studentData.map((data, index) => (
                     <tr key={index} className="even:bg-blue-50">
@@ -106,16 +122,21 @@ function StudentTable() {
                         </div>
                       </td>
                       <td class="px-6 py-3 whitespace-normal text-sm ">
-                        {data.enroll == null ? "No enroll": `${data.enroll.courseName}`}
+                        {data.enroll == null ? "No enroll" : `${data.enroll.courseName}`}
                       </td>
                       <td class="px-6 py-3 text-sm ">
                         {data.enroll == null ? "No enroll" : data.enroll.batchCode}
                       </td>
                       <td class="px-6 py-3 text-sm ">{data.mobileNo}</td>
-                      <td class="px-6 py-3 text-sm ">{data.gender}</td>
+                      <td class="px-6 py-3 text-sm ">{data.gender.charAt(0).toUpperCase() +
+                        data.gender.slice(1).toLowerCase()}</td>
+
                       <td class="px-6 py-3 whitespace-normal text-sm ">
                         {data.address.address}
                       </td>
+
+                        <td class="px-6 py-3 text-sm ">{data.address.district}</td>
+
                       <td className="pl-5 pr-2 py-4 flex justify-center items-center">
                         <Link to={`/admin/subject/update/${data.id}`}>
                           <EditButton />
@@ -126,7 +147,7 @@ function StudentTable() {
                           DELETE_URL={STUDENT_DELETE_URL}
                         />
                       </td>
-                      <td class="pr-2 pl-4 py-1 text-sm text-left">
+                      {/* <td class="pr-2 pl-4 py-1 text-sm text-left">
                         <Link
                           // to={`/admin/student/info/${data.id}`}
                           to={`/admin/student/info/${data.id}/${data.firstName}/${data.lastName}/${data.nic}/${data.mobileNo}/${data.gender}/${data.dob}/${data.activeStatus}/${data.imageUrl}/${data.address}/${data.enroll && data.enroll.enrollId != null ? data.enroll.enrollId : ""}/${data.enroll && data.enroll.batchId != null ? data.enroll.batchId : ""}/${data.enroll && data.enroll.batchCode != null ? data.enroll.batchCode : ""}/${data.enroll && data.enroll.courseId != null ? data.enroll.courseId : ""}/${data.enroll && data.enroll.courseName != null ? data.enroll.courseName : ""}/${data.enroll && data.enroll.enrollDate != null ? data.enroll.enrollDate : ""}`}
@@ -155,7 +176,7 @@ function StudentTable() {
                             </g>
                           </svg>
                         </Link>
-                      </td>
+                      </td> */}
                     </tr>
                   ))}
                 </tbody>

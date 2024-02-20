@@ -124,7 +124,7 @@ function Batch() {
                     </span>
                   )}
                 </td>
-                <td class="pr-2 pl-4 py-1 text-sm text-center">15</td>
+                <td class="pr-2 pl-4 py-1 text-sm text-center">{data.count}</td>
                 <td class="pr-2 pl-4 py-1 text-sm text-left">
                   {data.courseName}
                 </td>
@@ -159,7 +159,7 @@ function Batch() {
                   <DeleteButton id={data.batchId} DELETE_URL={DELETE_URL} />
                 </td>
                 <td class="pr-2 pl-4 py-1 text-sm text-left">
-                  <Link to={`/admin/batch/info/${data.batchId}`}>
+                  <Link to={`/admin/batch/info/${data.batchId}/${data.code}/${data.courseName}/${data.schoolName}`}>
                     <svg
                       fill="#0071e1"
                       version="1.1"
