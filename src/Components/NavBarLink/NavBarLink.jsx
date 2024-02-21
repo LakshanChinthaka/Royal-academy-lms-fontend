@@ -7,7 +7,7 @@ function NavBarLink({ userRole }) {
   const navItems = [
     { path: '/', label: 'Home' },
     { path: '/program', label: 'Programs' },
-    { path: '/student/dashboard', label: 'Student Dashboard', role: 'ROLE_USER' },
+    { path: '/student/dashboard', label: 'Student Dashboard', role: 'ROLE_STUDENT' },
     { path: '/admin/dashboard', label: 'Admin Dashboard', role: "ROLE_ADMIN" },
 
   ];

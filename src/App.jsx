@@ -7,7 +7,7 @@ import Program from './Components/Programs/Programs';
 import CourseInfo from './Components/CourseInfo/CourseInfo';
 import Text from './Components/text/Text';
 import SignInPage from '../src/page/SignInPage/SignInPage';
-import StudentDashboard from './Components/StudentDashboard/StudentDashboard';
+import StudentDashboard from './Components/StudentDashboard/StudentPage';
 import StudentTable from './Components/AdminDashboard/StudentsTable/StudentTable';
 import Assigment from './Components/AdminDashboard/Assignment/Assigment';
 import Registration from './Components/AdminDashboard/Registration/Registration';
@@ -35,6 +35,10 @@ import StudentAssignToBatch from './Components/AdminDashboard/Batch/StudentAssig
 import MailSend from './Components/AdminDashboard/MailIndox/MailSend';
 import AdminNavBar from './Components/AdminDashboard/AdminNavBar/AdminNavBar';
 import MailInfo from './Components/AdminDashboard/MailIndox/MailInfo';
+import StudentPage from './Components/StudentDashboard/StudentPage';
+import StudentNavBar from './Components/StudentDashboard/StudentNavBar/StudentNavBar';
+import StudentProfile from './Components/StudentDashboard/StudentProfile/StudentProfile';
+import AssigmentAdd from './Components/AdminDashboard/Assignment/AssigmentAdd';
 
 
 
@@ -60,11 +64,22 @@ function App() {
       <TokenProvider>
         <BrowserRouter>
 
+          {userRole === "ROLE_ADMIN" && userRole !== "ROLE_STUDENT" && (
+            <AdminNavBar userRole={userRole} />
+          )}
 
-          {/* {(userRole !== "ROLE_ADMIN" && userRole !== "ROLE_USER") && ( */}
-            {/* <NavBar userRole={userRole} /> */}
-        <AdminNavBar userRole={userRole}/> 
-           {/* )} */}
+          {userRole === "ROLE_STUDENT" && (
+            <StudentNavBar />
+          )}
+
+
+
+          {/* {(userRole == "ROLE_ADMIN" && userRole !== "ROLE_STUDENT") && (
+
+            <AdminNavBar userRole={userRole} />
+            //  <NavBar userRole={userRole} /> 
+          )} */}
+
 
           <Routes>
             {/* <Route path="/" element={<HomePage logout />} /> */}
@@ -104,28 +119,33 @@ function App() {
                 {/* Student */}
                 <Route path="/admin/subject/update/:id" element={<AdminPage><StudentEdit /></AdminPage>} />
                 {/* <Route path="/admin/student/info/:id" element={<AdminPage><StudentInfo/></AdminPage>} /> */}
-                <Route path="/admin/student/info/:id/:firstName/:lastName/:nic/:mobileNo/:gender/:dob/:activeStatus/:imageUrl/:address/:enrollId/:batchId/:batchCode/:courseId/:courseName/:enrollDate" element={<AdminPage><StudentInfo/></AdminPage>} />
+                <Route path="/admin/student/info/:id/:firstName/:lastName/:nic/:mobileNo/:gender/:dob/:activeStatus/:imageUrl/:address/:enrollId/:batchId/:batchCode/:courseId/:courseName/:enrollDate" element={<AdminPage><StudentInfo /></AdminPage>} />
                 {/* Account */}
 
                 <Route path="/admin/account" element={<AdminPage><Account /></AdminPage>} />
 
                 {/* Mail */}
                 <Route path="/admin/mail/send" element={<AdminPage><MailSend /></AdminPage>} />
-                <Route path="/admin/mail/info/:mailId/:sendTo/:messageBody/:subject/:sendFrom/:createdDate" element={<AdminPage><MailInfo/></AdminPage>} />
+                <Route path="/admin/mail/info/:mailId/:sendTo/:messageBody/:subject/:sendFrom/:createdDate" element={<AdminPage><MailInfo /></AdminPage>} />
+                {/* Assigment */}
+                <Route path="/admin/assigment/add" element={<AdminPage><AssigmentAdd/></AdminPage>} />
               </>
 
             )}
 
-            {userRole === "ROLE_USER" && (
+            {userRole === "ROLE_STUDENT" && (
               <>
-                <Route path="/student/dashboard" element={<StudentDashboard />} />
+                <Route path="/student/dashboard" element={<StudentPage />} />
+                <Route path="/student/profile" element={<StudentPage><StudentProfile /></StudentPage>} />
+                {/* <Route path="/student/dashboard" element={<StudentDashboard />} /> */}
               </>
             )}
           </Routes>
-          
-          {/* {(userRole === "ROLE_ADMIN" && userRole == "ROLE_USER") && ( */}
-            {/* <Footer />  */}
-          {/* )} */}
+
+          {/* {(userRole !== "ROLE_ADMIN" && userRole == "ROLE_STUDENT") && ( 
+            <StudentNavBar/>
+          // <Footer />  
+          )}  */}
         </BrowserRouter>
       </TokenProvider>
     </>

@@ -28,8 +28,7 @@ function AdminPage({ children }) {
     </div>
   );
 }
-//scroll bar
-// style={{ overflowY: 'auto', maxHeight: 'calc(100vh - 64px)' }
+
 export default AdminPage;
 
 
