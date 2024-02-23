@@ -79,7 +79,7 @@ function AdminNavBar({ userRole }) {
 
       <ul className="flex bg-gray-800 p-1.5  font-sans py-4 w-full items-end justify-end pr-5">
 
-        <FiAlignRight onClick={toggleMenu} className="text-white text-lg w-11 h-11 ml-5 text-center cursor-pointer" />
+        <FiAlignRight onClick={toggleMenu} className="text-white  w-7 h-7 ml-5 cursor-pointer" />
       </ul>
     </div>
   );

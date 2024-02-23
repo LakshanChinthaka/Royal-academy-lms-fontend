@@ -127,38 +127,23 @@ function Account() {
 
   return (
     <div className="justify-center item-center">
-      <div className="mt-10 ml-[10%]">
-        <div className="mt-10, ml-10">
+
+      <div className="mt-3 ml-3 md:ml-[10%]">
+        
+        <div className="mt-1">
           <BackButton onClick={() => navigate(-1)} />
         </div>
-        <h2 class="text-2xl mt-5 ml-[200px] font-bold text-gray-700">
+
+        <h2 class="text-2xl mt-2 md:ml-[200px] font-bold text-gray-700">
           Create Account
         </h2>
+
       </div>
 
-      <div className="inline-flex ml-[10%]">
-        {/* Search feild */}
-        <div class="bg-white mt-5 mb-5 ml-[200px] flex px-1 py-1 rounded-full border border-blue-500 overflow-hidden max-w-md mx-auto font-[sans-serif]">
-          <input
-            value={nic.nic}
-            onChange={handleSearchInputData}
-            required
-            type="text"
-            name="nic"
-            placeholder="Search by NIC no"
-            class="w-full outline-none bg-white pl-4 text-sm"
-          />
-          <button
-            onClick={handleSearch}
-            type="button"
-            class="bg-blue-600 hover:bg-blue-700 transition-all text-white text-sm rounded-full px-5 py-2.5"
-          >
-            Search
-          </button>
-        </div>
+      <div className="md:inline-flex mt-3 ml-[-25px]">
 
-        {/* Gender */}
-        <div class="space-y-6 gap-5 mt-2 inline-block">
+           {/* Role */}
+           <div class="md:space-y-6 gap-5 mt-2 inline-block">
           <div class="inline-block ml-10">
             <input
               type="radio"
@@ -181,6 +166,29 @@ function Account() {
             <label class="text-sm text-black ml-4">Employee</label>
           </div>
         </div>
+        
+
+        {/* Search feild */}
+        <div class="bg-gray-50 mt-5 mb-5 ml-10 mr-4 md:ml-[200px] flex px-1 py-1 rounded-full border border-blue-300 overflow-hidden max-w-md mx-auto font-[sans-serif]">
+          <input
+            value={nic.nic}
+            onChange={handleSearchInputData}
+            required
+            type="text"
+            name="nic"
+            placeholder="Search by NIC no"
+            class="w-full outline-none bg-white pl-4 text-sm"
+          />
+          <button
+            onClick={handleSearch}
+            type="button"
+            class="bg-blue-600 hover:bg-blue-700 transition-all text-white text-sm rounded-full px-5 py-2.5"
+          >
+            Search
+          </button>
+        </div>
+
+     
       </div>
       <div className="flex ml-[16%] mt-10 mb-5">
         <p className="text-sm font-bold text-gray-700 ml-[100px]">
@@ -193,10 +201,35 @@ function Account() {
         </p>
       </div>
 
+
       {/*From data  */}
       <div class="max-w-4xl mx-auto font-[sans-serif] text-[#333] p-6">
         <form onSubmit={handleSubmit}>
           <div class="grid sm:grid-cols-2 gap-y-7 gap-x-12">
+
+          <div>
+              <label htmlFor="username" class="text-sm mb-2 block">
+                Student Name
+              </label>
+              <lable
+               {SearchData.firstName ? SearchData.firstName : "-"}
+                disabled
+                class="bg-yellow-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
+                placeholder="Search student name"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="username" class="text-sm mb-2 block">
+                Student Nic
+              </label>
+              <input
+                disabled
+                class="bg-yellow-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
+                placeholder="Search nic"
+              />
+            </div>
+
             <div>
               <label htmlFor="username" class="text-sm mb-2 block">
                 Username
@@ -211,7 +244,7 @@ function Account() {
                 title="Please enter a valid email address"
                 name="username"
                 type="email"
-                class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
+                class="bg-gray-200 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
                 placeholder="Enter username"
               />
             </div>
@@ -223,7 +256,7 @@ function Account() {
                 required
                 name="password"
                 type="text"
-                class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
+                class="bg-gray-200 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
                 placeholder="Enter password"
               />
             </div>
