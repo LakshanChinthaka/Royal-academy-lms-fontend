@@ -8,11 +8,16 @@ import Stack from "@mui/material/Stack";
 import Button from "../../../utils/Button/Button";
 import DeleteButton from "../ActionButton/DeleteButton";
 
+
+
 function Assigment() {
   const [subjectData, setSubjectData] = useState([]);
   const { token } = useToken();
+ 
+
   const SUBJECT_URL = "http://localhost:8080/api/v1/subject/find";
   const DELETE_URL = "http://localhost:8080/api/v1/subject/delete";
+
 
   //Pagindation
   const [currentPage, setCurrentPage] = useState(0);
@@ -51,6 +56,8 @@ function Assigment() {
     }
   };
 
+
+
   const tableHeaders = [
     "Code",
     "Subject",
@@ -79,7 +86,7 @@ function Assigment() {
 
       <div className="inline-block">
         <h2 class="inline-block text-sm pr-10 mb-1 pl-5 font-bold text-gray-700">
-          Total Subject- {totalElements}
+        Total Subject- {totalElements}
         </h2>
 
         <h2 class="inline-block text-xl justify-items-center ml-[400px] mt-2  font-bold text-gray-700">
@@ -88,40 +95,41 @@ function Assigment() {
       </div>
 
       <div class="mb-5">
+
         <table class="min-w-full bg-white font-[sans-serif]">
           <thead class="bg-gray-800 whitespace-nowrap">
             {/* Table deader */}
             <tr>
-              {tableHeaders.map((header, index) => (
+          {tableHeaders.map((header, index) => (
                 <th
                   key={index}
                   class="pr-6 pl-5  py-3 text-left text-sm font-semibold text-white"
                 >
                   {header}
                 </th>
-              ))}
+          ))} 
             </tr>
           </thead>
 
           {/* Table body */}
           <tbody class="whitespace-normal">
-            {subjectData.map((data, index) => (
+           {subjectData.map((data, index) => (
               <tr
-                key={index}
-                className={index % 2 === 0 ? "even:bg-blue-50" : ""}
+               key={index}
+                 className={index % 2 === 0 ? "even:bg-blue-50" : ""}
                 class="even:bg-blue-50"
               >
-                <td class="pr-2 pl-4 py-4 text-sm text-left">
+                <td class="pr-2 pl-4 py-4 text-sm text-left"> 
                   {data.subjectCode}
                 </td>
-                <td class="pr-2 pl-4 py-1 text-sm text-left">{data.name}</td>
-                <td className="px-6 py-4 text-sm">{data.createdDate}</td>
-                <td className="px-6 py-4 text-sm">{data.createBy}</td>
-                <td className="px-6 py-4 text-sm">{data.modifiedData}</td>
-                <td className="px-6 py-4 text-sm">{data.modifiedBy}</td>
+                <td class="pr-2 pl-4 py-1 text-sm text-left">{data.name}</td> 
+                <td className="px-6 py-4 text-sm">{data.createdDate}</td> 
+                <td className="px-6 py-4 text-sm">{data.createBy}</td> 
+                 <td className="px-6 py-4 text-sm">{data.modifiedData}</td> 
+                 <td className="px-6 py-4 text-sm">{data.modifiedBy}</td>
 
                 <td class="pr-2 pl-4 py-1 text-sm text-center">
-                <Link to={`/admin/subject/assign/${data.subjectId}/${data.name}/${data.subjectCode}`}>
+                <Link to={`/admin/subject/assign/${data.subjectId}/${data.name}/${data.subjectCode}`}> 
                  <button
                     type="button"
                     class="w-6 h-6 inline-flex items-center justify-center rounded-full border-none outline-none bg-purple-600 hover:bg-purple-700 active:bg-purple-600"
@@ -139,19 +147,19 @@ function Assigment() {
                       />
                     </svg>
                   </button>
-                 </Link>
+             </Link>
                 </td>
                 <td class="pr-2 pl-4 py-1 text-sm text-left">
-                  <DeleteButton id={data.subjectId} DELETE_URL={DELETE_URL} />
+                <DeleteButton id={data.subjectId} DELETE_URL={DELETE_URL} /> 
                 </td>
               </tr>
-            ))}
+         ))}
           </tbody>
         </table>
 
         {/* Pgination */}
         <div className="md:flex mt-4 px-6">
-          <p className="text-sm  text-gray-400 flex-1">
+         <p className="text-sm  text-gray-400 flex-1">
             Showing {currentPage * pageSize + 1} to{" "}
             {Math.min(
               currentPage * pageSize + pageSize,
@@ -161,7 +169,7 @@ function Assigment() {
           </p>
           {/* Pagination  */}
           <div className="flex items-center max-md:mt-5 mb-1">
-            <Stack spacing={3}>
+          <Stack spacing={3}>
               <Pagination
                 count={totalPages}
                 shape="rounded"

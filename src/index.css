@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 
-/* tailwind.css or your custom Tailwind CSS file */
+/* .no-scrollbar::-webkit-scrollbar{
+  display: none;
+}
 
-/* Hide scrollbar for the body */
-body::-webkit-scrollbar {
-    display: none;
-  }
-  
+.no-scrollbar{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+} */

@@ -1,4 +1,5 @@
 
+import Footer from "../Footer/Footer";
 import AdminNavBar from "./AdminNavBar/AdminNavBar";
 import { Grid } from "@mui/material";
 
@@ -19,6 +20,7 @@ function AdminPage({ children }) {
           <div style={{ overflowY: 'auto', maxHeight: 'calc(100vh - 64px)' }}>
             <Grid item xs={12}>
               {children}
+              <Footer />  
             </Grid>
           </div>
           </Grid>

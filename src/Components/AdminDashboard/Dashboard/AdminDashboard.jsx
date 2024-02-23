@@ -44,7 +44,6 @@ function AdminDashboard() {
         </div>
       </div>
     </div>
-    {/* <ApexChart/> */}
     </div>
   )
 }

@@ -8,27 +8,40 @@ import AutocompleteComponent from "../../../page/SignInPage/AutocompleteComponen
 import Swal from "sweetalert2";
 import ConfirmAlert from "../../../utils/ConfiramAlert";
 import BatchDropdwon from "../../../utils/BatchDropdown";
+import {
+  ref,
+  getDownloadURL,
+  uploadBytes,
+  deleteObject,
+} from "firebase/storage";
+import { storage } from "../../../Components/firebase";
+import Loading from "../../../utils/Loading/Loading";
 
 function AssigmentAdd() {
   const { token } = useToken();
+  const [img, setImg] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   // Message
   const { SuccessMessage } = SuccessAlert();
   const { ConfirmMessage } = ConfirmAlert();
 
   const COURSE_URL = "http://localhost:8080/api/v1/course/find-with-name";
-  const ASSIGNMENT_ADD_URL = "http://localhost:8080/api/v1/assignment/add";
+  const ASSIGNMENT_ADD_URL = "http://localhost:8080/api/v1/assigment/add";
 
   const [courseId, setCourseID] = useState({
-    courseId: "",
+    courseId: null,
   });
+
+  console.log("File image", img);
 
   console.log("Course id-", courseId.courseId);
 
   const [formData, setFormData] = useState({
     assiCode: "",
-    batchId: "",
+    batchId: null,
     deadLine: "",
+    assiUrl: "",
   });
 
   const navigate = useNavigate();
@@ -49,10 +62,10 @@ function AssigmentAdd() {
   //Handle course
   const handleCourseChange = (selectedOption) => {
     if (selectedOption) {
-      const Id = selectedOption.courseId; // Assuming schoolID is the property name
-      setCourseID({ ...courseId, courseId: Id }); // Update formData with the selected schoolId
+      const Id = selectedOption.courseId;
+      setCourseID({ ...courseId, courseId: Id });
     } else {
-      setCourseID({ ...courseId, courseId: null }); // If no option is selected, set schoolId to null
+      setCourseID({ ...courseId, courseId: null });
     }
   };
 
@@ -68,45 +81,91 @@ function AssigmentAdd() {
   };
   console.log("Payload", payload);
 
-  //Sumbit
-  const handleSubmit = async (e) => {
+  //submit
+  const handleSumbit = async (e) => {
+    if (!img) return;
+
     e.preventDefault();
 
     const confirmed = await ConfirmMessage(
-      "Save Confirmation",
+      "Add New Assigment",
       "Are you sure you want to Add?",
       "Yes, Add",
       "Cancel"
     );
 
     if (confirmed) {
+      setLoading(true)
+      const fileName = `Batch-${formData.batchId}-${formData.assiCode}`;
+      const imgRef = ref(
+        storage,
+        `assigment/batch-${formData.batchId}/${fileName}`
+      );
+
       try {
-        const res = await axios.post(BATCH_ADD_URL, payload, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const existingUrl = await getDownloadURL(imgRef);
+        const existingImageRef = ref(storage, existingUrl);
+        await deleteObject(existingImageRef);
+        await uploadBytes(imgRef, img);
+        const newImageUrl = await getDownloadURL(imgRef);
 
-        const confirmed = await SuccessMessage(res.data.data, "success");
+        console.log("Firebase Image url-", newImageUrl);
 
-        navigate(-1);
-        //got to back
+        saveToDb(newImageUrl);
+
       } catch (error) {
-        const confirmed = await SuccessMessage(
-          error.response.data.data,
-          "error"
-        );
+        if (error.code === "storage/object-not-found") {
+          await uploadBytes(imgRef, img);
+          const newImageUrl = await getDownloadURL(imgRef);
 
-        setData({
-          code: "",
-          courseId: "",
-          schoolId: "",
-        });
+          saveToDb(newImageUrl);
+        } else {
+          console.error("Error handling image:", error);
+        }
       }
     } else {
       Swal.fire("Sumbit Cancelled", "", "info");
     }
   };
+
+  //save to db
+  const saveToDb = async (newImageUrl) => {
+
+    const payload = {
+      ...formData, 
+      assiUrl: newImageUrl 
+    };
+
+    console.log("Save payload:", payload)
+    try {
+      const res = await axios.post(ASSIGNMENT_ADD_URL, payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setLoading(false)
+      
+      setFormData({
+        assiCode: "",
+        batchId: null,
+        deadLine: "",
+        assiUrl: "",
+      })
+      const confirmed = await SuccessMessage(res.data.data, "success");    
+
+    } catch (error) {
+      const confirmed = await SuccessMessage(error.response.data.data, "error");
+      setLoading(false)
+    }
+  };
+
+  if(loading){
+    console.log("Loading...")
+    return(
+      <Loading/>
+    )
+  }
 
   return (
     <div>
@@ -119,7 +178,10 @@ function AssigmentAdd() {
         </h2>
       </div>
       <div class="max-w-4xl mx-auto font-[sans-serif] text-[#333] p-6">
-        <form onSubmit={handleSubmit}>
+
+    
+
+        <form onSubmit={handleSumbit}>
           <div class="grid sm:grid-cols-2 gap-y-7 gap-x-12">
             <div>
               <label htmlFor="assiCode" class="text-sm mb-2 block">
@@ -170,24 +232,21 @@ function AssigmentAdd() {
               <input
                 value={formData.deadLine}
                 onChange={handleChange}
-                // selected={dob}
                 name="deadLine"
                 type="date"
                 className="bg-gray-100 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-100 dark:border-gray-100 dark:placeholder-gray-400 dark:gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Select date"
               />
             </div>
-
-            {/* file upload button */}
-            <div class="space-y-8 font-[sans-serif] ml-[4px] mt-5 mb-5 max-w-md mx-auto">
-              <input
-                type="file"
-                class="w-full text-black text-sm bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded"
-              />
-            </div>
           </div>
-
-          {/* Sumbit button */}
+               {/* file upload button */}
+         <div class="space-y-8 font-[sans-serif] ml-[2px] mt-10 mb-7 max-w-md mx-auto">
+          <input
+            onChange={(e) => setImg(e.target.files[0])}
+            type="file"
+            class=" text-black text-sm bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded"
+          />
+        </div>
           <button
             type="submit"
             class=" mt-5 max-w-[200px] py-3 px-4 text-sm font-semibold rounded text-white bg-blue-500 hover:bg-blue-600 focus:outline-none"

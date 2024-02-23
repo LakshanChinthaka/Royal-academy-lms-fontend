@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@mui/material";
+import { Grid,CircularProgress } from "@mui/material";
 import axios from "axios";
 import Dropdown from "../../../utils/Dropdown/Dropdown";
 import { Link } from "react-router-dom";
 import EditButton from "../ActionButton/EditButton";
 import DeleteButton from "../ActionButton/DeleteButton";
 import { useToken } from '../../Context/TokenProvider';
+import Loading from "../../../utils/Loading/Loading";
 
 function School() {
   const [schoolDetails, setSchooldetails] = useState([]);
   const [filterStatus, setFilterStatus] = useState("All");
   const { token } = useToken();
   const DELETE_URL = "http://localhost:8080/api/v1/school/delete";
+  const [loading, setLoading] = useState(true); 
+
+
 
   useEffect(() => {
     getSchoolData();
   }, []);
 
 
-  const getSchoolData = async () => {
 
+  const getSchoolData = async () => {
+    console.log("Start get data")
+    setLoading(true);
     try {
 
       const URL = "http://localhost:8080/api/v1/school/find-all";
@@ -39,6 +45,10 @@ function School() {
     } catch (error) {
       console.error("Error fetching school data:", error);
     }
+     finally {
+      console.log("Final block")
+      setLoading(false); 
+    }
   };
 
   //filter data
@@ -51,6 +61,18 @@ function School() {
     setFilterStatus(selectedOption); // Update filterStatus
   };
 
+  if (loading) {
+    console.log("Loading....")
+    return (
+      <Loading/>
+      // <Grid container justifyContent="center" alignItems="center" style={{ height: "90vh" }}>
+      //   <CircularProgress />
+      // </Grid>
+    );
+  }
+
+
+  
 
   return (
     <div>

@@ -82,10 +82,10 @@ function StudentTable() {
         </Grid>
         <Grid container>
           <Grid item xs={12}>
-          
-          <h2 class="inline-block text-sm pr-10 mb-2 ml-3  font-bold text-gray-700">
-          Total Student- {totalElement}
-        </h2>
+
+            <h2 class="inline-block text-sm pr-10 mb-2 ml-3  font-bold text-gray-700">
+              Total Student- {totalElement}
+            </h2>
 
 
             <div class="overflow-x-auto pb-8">
@@ -103,22 +103,26 @@ function StudentTable() {
                     ))}
                   </tr>
                 </thead>
-                      
+
                 <tbody class="whitespace-nowrap divide-y divide-gray-200">
                   {studentData.map((data, index) => (
                     <tr key={index} className="even:bg-blue-50">
                       <td class="px-6 py-3 text-sm">
-                        <div class="flex items-center">
-                          <img
-                            src="https://readymadeui.com/profile_4.webp"
-                            class="w-9 h-9 rounded-full shrink-0"
-                          />
+
+                        <div class="flex items-center ">
+                          {data.imageUrl ? <img src={data.imageUrl} className="w-9 h-9 rounded-full shrink-0"/> : <img
+                             src="https://militaryhealthinstitute.org/wp-content/uploads/sites/37/2021/08/blank-profile-picture-png.png"
+                            class="w-9 h-9 rounded-full shrink-0  border-2 border-gray-300"
+                          />}
+
                           <div class="ml-4">
+
                             <p class="text-sm text-black">
                               {data.firstName + " " + data.lastName}
                             </p>
                             <p class="text-xs text-gray-400">NIC: {data.nic}</p>
                           </div>
+
                         </div>
                       </td>
                       <td class="px-6 py-3 whitespace-normal text-sm ">
@@ -135,7 +139,7 @@ function StudentTable() {
                         {data.address.address}
                       </td>
 
-                        <td class="px-6 py-3 text-sm ">{data.address.district}</td>
+                      <td class="px-6 py-3 text-sm ">{data.address.district}</td>
 
                       <td className="pl-5 pr-2 py-4 flex justify-center items-center">
                         <Link to={`/admin/subject/update/${data.id}`}>
