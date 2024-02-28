@@ -17,6 +17,7 @@ import {
 import { storage } from "../../../Components/firebase";
 import Loading from "../../../utils/Loading/Loading";
 
+
 function AssigmentAdd() {
   const { token } = useToken();
   const [img, setImg] = useState(null);
@@ -75,11 +76,9 @@ function AssigmentAdd() {
   };
 
   console.log(formData);
+  console.log("Type",typeof deadLine);
 
-  const payload = {
-    ...formData,
-  };
-  console.log("Payload", payload);
+
 
   //submit
   const handleSumbit = async (e) => {
@@ -95,6 +94,7 @@ function AssigmentAdd() {
     );
 
     if (confirmed) {
+
       setLoading(true)
       const fileName = `Batch-${formData.batchId}-${formData.assiCode}`;
       const imgRef = ref(
@@ -149,7 +149,7 @@ function AssigmentAdd() {
       setFormData({
         assiCode: "",
         batchId: null,
-        deadLine: "",
+        deadLine: null,
         assiUrl: "",
       })
       const confirmed = await SuccessMessage(res.data.data, "success");    

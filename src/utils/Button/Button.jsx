@@ -4,8 +4,8 @@ function Button({name}) {
   return (
     <div>
          <button
-              type="button inline-block"
-              className="ml-[250px] px-6 flex justify-items-end mt-3 py-2.5 rounded text-white text-sm tracking-wider font-semibold border-none outline-none bg-green-600 hover:bg-green-700 active:bg-green-600"
+              type="button"
+              className="md:ml-[250px] px-6 flex justify-items-end mt-3 py-2.5 rounded text-white text-sm tracking-wider font-semibold border-none outline-none bg-green-600 hover:bg-green-700 active:bg-green-600"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

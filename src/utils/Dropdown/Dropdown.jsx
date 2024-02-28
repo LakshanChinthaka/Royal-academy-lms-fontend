@@ -14,7 +14,7 @@ function Dropdown({ options, onSelect, label }) {
 
   return (
     <div>
-      <div className="relative font-[sans-serif] w-max mb-3 mt-3 ml-7  justify-items-start">
+      <div className="font-[sans-serif] w-max mb-3 mt-3 ml-7  justify-items-start">
         <button
           onClick={handleOpen}
           type="button"
@@ -35,8 +35,9 @@ function Dropdown({ options, onSelect, label }) {
           </svg>
         </button>
         {open ? (
-          <ul className="absolute shadow-lg bg-white py-2 z-[1000] min-w-full w-max rounded max-h-96 overflow-auto">
+          <ul className="absolute shadow-lg bg-white py-2 z-[000] w-max rounded max-h-96 overflow-auto">
             {options.map((option, index) => (
+              
               <li
                 key={index}
                 onClick={() => handleSelect(option)}

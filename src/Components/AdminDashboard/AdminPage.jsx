@@ -1,6 +1,3 @@
-
-import Footer from "../Footer/Footer";
-import AdminNavBar from "./AdminNavBar/AdminNavBar";
 import { Grid } from "@mui/material";
 
 function AdminPage({ children }) {
@@ -10,21 +7,21 @@ function AdminPage({ children }) {
       <Grid container>
         {/* Admin navigation bar */}
         <Grid item xs={12} >
-          {/* <AdminNavBar  /> */}
+          {/* <AdminMobileNavBar /> */}
+          {/* <AdminNavbar/> */}
         </Grid>
 
         {/* Main content area */}
         <Grid item xs={12}>
         <Grid item xs={12} >
-          {/* <Grid container> */}
           <div style={{ overflowY: 'auto', maxHeight: 'calc(100vh - 64px)' }}>
             <Grid item xs={12}>
               {children}
-              <Footer />  
             </Grid>
           </div>
           </Grid>
 
+              {/* <Footer />   */}
         </Grid>
       </Grid>
     </div>

@@ -128,22 +128,22 @@ function Account() {
   return (
     <div className="justify-center item-center">
 
-      <div className="mt-3 ml-3 md:ml-[10%]">
+      <div className="mt-3 ml-3 xl:ml-[330px]  md:ml-[3%]  lg:ml-[130px] ">
         
         <div className="mt-1">
           <BackButton onClick={() => navigate(-1)} />
         </div>
 
-        <h2 class="text-2xl mt-2 md:ml-[200px] font-bold text-gray-700">
+        <h2 class="text-2xl mt-2 font-bold text-gray-700">
           Create Account
         </h2>
 
       </div>
 
-      <div className="md:inline-flex mt-3 ml-[-25px]">
+      <div className=" mt-3 ml-[-25px]">
 
            {/* Role */}
-           <div class="md:space-y-6 gap-5 mt-2 inline-block">
+           <div class="md:space-y-6 gap-5 mt-2 lg:ml-[120px]  xl:ml-[310px] lg:my-3 inline-block">
           <div class="inline-block ml-10">
             <input
               type="radio"
@@ -169,7 +169,7 @@ function Account() {
         
 
         {/* Search feild */}
-        <div class="bg-gray-50 mt-5 mb-5 ml-10 mr-4 md:ml-[200px] flex px-1 py-1 rounded-full border border-blue-300 overflow-hidden max-w-md mx-auto font-[sans-serif]">
+        <div class="bg-gray-50 mt-5 mb-5 ml-10 mr-4 lg:ml-[155px] xl:ml-[350px] flex px-1 py-1 rounded-full border border-blue-300 overflow-hidden max-w-md mx-auto font-[sans-serif]">
           <input
             value={nic.nic}
             onChange={handleSearchInputData}
@@ -190,18 +190,7 @@ function Account() {
 
      
       </div>
-      <div className="flex ml-[16%] mt-10 mb-5">
-        <p className="text-sm font-bold text-gray-700 ml-[100px]">
-          Name: {SearchData.firstName ? SearchData.firstName : "-"}{" "}
-          {SearchData.lastName ? SearchData.lastName : "-"}
-        </p>
-
-        <p className="text-sm font-bold text-gray-700 ml-[100px]">
-          Nic no: {SearchData.nic ? SearchData.nic : "-"}
-        </p>
-      </div>
-
-
+    
       {/*From data  */}
       <div class="max-w-4xl mx-auto font-[sans-serif] text-[#333] p-6">
         <form onSubmit={handleSubmit}>
@@ -211,11 +200,12 @@ function Account() {
               <label htmlFor="username" class="text-sm mb-2 block">
                 Student Name
               </label>
-              <lable
-               {SearchData.firstName ? SearchData.firstName : "-"}
+              <input
+                value={`${SearchData.firstName ? SearchData.firstName : ""} ${SearchData.lastName ? SearchData.lastName : ""}`}
                 disabled
-                class="bg-yellow-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
-                placeholder="Search student name"
+                className={`bg-yellow-100 w-full text-sm border px-4 py-3.5 rounded-md outline-blue-500
+                 ${ SearchData.firstName ? 'border-green-300' : 'border-blue-100' }`}
+                placeholder="Student name"
               />
             </div>
 
@@ -224,8 +214,11 @@ function Account() {
                 Student Nic
               </label>
               <input
+                value={`${SearchData.nic ? SearchData.nic: ""} `}
                 disabled
-                class="bg-yellow-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
+                className={`bg-yellow-100 w-full text-sm border px-4 py-3.5 rounded-md outline-blue-500 ${
+                  SearchData.nic ? 'border-green-300' : 'border-blue-100'
+                }`}
                 placeholder="Search nic"
               />
             </div>

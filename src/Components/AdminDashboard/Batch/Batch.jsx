@@ -157,6 +157,7 @@ function Batch() {
 
                 <td class="pr-2 pl-4 py-1 text-sm text-center">
                   <DeleteButton id={data.batchId} DELETE_URL={DELETE_URL} />
+                  {/* <DeleteBu */}
                 </td>
                 <td class="pr-2 pl-4 py-1 text-sm text-left">
                   <Link to={`/admin/batch/info/${data.batchId}/${data.code}/${data.courseName}/${data.schoolName}`}>

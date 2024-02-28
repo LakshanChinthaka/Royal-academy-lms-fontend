@@ -20,11 +20,13 @@ function LogOutButton() {
     if (confirmed) {
 
       localStorage.removeItem("userData");
+      localStorage.removeItem("token");
+      localStorage.removeItem("id");
       localStorage.removeItem("userRole")
 
       navigate("/login");
 
-      window.location.reload();
+      // window.location.reload();
     } else {
 
       Swal.fire("Logout Cancelled", "", "info");

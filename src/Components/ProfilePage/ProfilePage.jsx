@@ -143,8 +143,8 @@ function ProfilePage() {
 
   return (
     <div className="">
-      <div class="bg-gray-100 p-6 w-full max-w-sm rounded-1xl overflow-hidden mx-auto mt-4">
-        <div class="flex flex-col items-center bg-gray-100">
+      <div class="bg-gray-50 p-6 w-full max-w-sm rounded-1xl overflow-hidden mx-auto mt-4 md:mt-[-20px]">
+        <div class="flex flex-col items-center bg-gray-50">
           {userDetails.imageUrl ? (
             <img
               src={userDetails.imageUrl}
@@ -157,10 +157,10 @@ function ProfilePage() {
               alt="Default Profile Image"
             />
           )}
-          <div class="mt-2 text-center">
-            <p class="text-xl text-[#333] font-bold">{userDetails.firstName + " " + userDetails.lastName}</p>
-            <p class="text-base text-gray-500 mt-2">{role}</p>
-            <p class="text-base text-gray-500 mt-2">{userDetails.employeeType}</p>
+          <div class="mt-2 sm:mt-1 text-center">
+            <p class="text-xl sm:mt-[-2px] text-[#333] font-bold">{userDetails.firstName + " " + userDetails.lastName}</p>
+            <p class="text-base sm:mt-[-2px] text-gray-500 mt-2">{role}</p>
+            <p class="text-base sm:mt-[-2px] text-gray-500 mt-2">{userDetails.employeeType}</p>
           </div>
         </div>
       </div>
@@ -265,6 +265,7 @@ function ProfilePage() {
       >
         Upload
       </button>
+      
       </div>
     </div>
   );

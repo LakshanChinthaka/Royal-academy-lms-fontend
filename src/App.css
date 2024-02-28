@@ -1,0 +1,12 @@
+/* global.css */
+/*  */
+  /* Set minimum width for all div elements */
+  div {
+    min-width: 350px; /* Adjust as needed */
+  }
+  
+  /* Set minimum width for all input elements */
+  input {
+    min-width: 150px; /* Adjust as needed */
+  }
+  

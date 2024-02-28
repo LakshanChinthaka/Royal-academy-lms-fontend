@@ -22,8 +22,8 @@ function SigninPage() {
 
 
   const handleLogin = async (e) => {
-    console.log("P ",loginData.password );
-    console.log("U ",loginData.email);
+    console.log("P ", loginData.password);
+    console.log("U ", loginData.email);
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -34,18 +34,18 @@ function SigninPage() {
 
       const token = response.data.token;
       const decodedToken = jwtDecode(token);
-  
+
       localStorage.setItem("token", token);
       localStorage.setItem("userRole", decodedToken.role);
-  
-      if (decodedToken.role === "ROLE_ADMIN") {
-        console.log("Login page user role- ",decodedToken.role)
-        navigate("/admin/dashboard");
-      } else {     
-        console.log(decodedToken.role)
-        navigate("/student/dashboard"); 
-      }
+      localStorage.setItem("id", decodedToken.id);
 
+      if (decodedToken.role === "ROLE_ADMIN") {
+        console.log("Login page user role- ", decodedToken.role)
+        navigate("/admin/dashboard");
+      } else {
+        console.log(decodedToken.role)
+        navigate("/student/dashboard");
+      }
 
       window.location.reload();
     } catch (err) {
@@ -66,13 +66,15 @@ function SigninPage() {
   return (
     <>
       <div class="font-[sans-serif] text-[#333]">
+
+
         <div class="min-h-screen flex fle-col items-center justify-center py-6 px-4">
           <div class="grid md:grid-cols-2 items-center gap-10 max-w-6xl w-full">
             <div class="max-md:text-center mt-[-18px]">
-              <h2 class="lg:text-6xl h-[60px] text-4xl text-blue-600 font-extrabold lg:leading-[55px]">
+              <h2 class="lg:text-6xl h-[60px] text-4xl text-blue-700 font-extrabold lg:leading-[55px]">
                 Royal Academy <br />
               </h2>
-              <h2 class="lg:text-3xl mt-3 text-4xl font-extrabold lg:leading-[55px]">
+              <h2 class="lg:text-3xl mt-3 text-2xl font-extrabold lg:leading-[55px]">
                 A Great Place For Education.
               </h2>
               <p class="text-1xl  mt-2">
@@ -88,7 +90,7 @@ function SigninPage() {
               onSubmit={handleLogin}
               class="space-y-6 max-w-md md:ml-auto max-md:mx-auto w-full"
             >
-              <h3 class="text-3xl font-extrabold mb-8 max-md:text-center">
+              <h3 class="text-2xl font-extrabold mb-8 max-md:text-center">
                 Sign in
               </h3>
 

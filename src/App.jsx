@@ -33,12 +33,15 @@ import AdminDashboard from './Components/AdminDashboard/Dashboard/AdminDashboard
 import Account from './Components/AdminDashboard/Account/Account';
 import StudentAssignToBatch from './Components/AdminDashboard/Batch/StudentAssignToBatch';
 import MailSend from './Components/AdminDashboard/MailIndox/MailSend';
-import AdminNavBar from './Components/AdminDashboard/AdminNavBar/AdminNavBar';
+import AdminNavBar from './Components/AdminDashboard/AdminNavBar/AdminMobileNavBar';
 import MailInfo from './Components/AdminDashboard/MailIndox/MailInfo';
 import StudentPage from './Components/StudentDashboard/StudentPage';
 import StudentNavBar from './Components/StudentDashboard/StudentNavBar/StudentNavBar';
 import StudentProfile from './Components/StudentDashboard/StudentProfile/StudentProfile';
 import AssigmentAdd from './Components/AdminDashboard/Assignment/AssigmentAdd';
+import StudentAssignment from './Components/StudentDashboard/Assignment/StudentAssignment';
+import ShowAllAssignemt from './Components/AdminDashboard/Assignment/ShowAllAssignemt';
+import AdminNavbar from './Components/Navbar/AdminNavbar';
 
 
 
@@ -65,8 +68,8 @@ function App() {
         <BrowserRouter>
 
           {userRole === "ROLE_ADMIN" && userRole !== "ROLE_STUDENT" && (
-            <AdminNavBar userRole={userRole} />
-          )}
+            <AdminNavbar userRole={userRole} />
+          )} 
 
           {userRole === "ROLE_STUDENT" && (
             <StudentNavBar />
@@ -129,6 +132,7 @@ function App() {
                 <Route path="/admin/mail/info/:mailId/:sendTo/:messageBody/:subject/:sendFrom/:createdDate" element={<AdminPage><MailInfo /></AdminPage>} />
                 {/* Assigment */}
                 <Route path="/admin/assigment/add" element={<AdminPage><AssigmentAdd/></AdminPage>} />
+                <Route path="/admin/assigment/all" element={<AdminPage><ShowAllAssignemt/></AdminPage>} />
               </>
 
             )}
@@ -137,15 +141,15 @@ function App() {
               <>
                 <Route path="/student/dashboard" element={<StudentPage />} />
                 <Route path="/student/profile" element={<StudentPage><StudentProfile /></StudentPage>} />
-                {/* <Route path="/student/dashboard" element={<StudentDashboard />} /> */}
+                <Route path="/student/assignment" element={<StudentPage><StudentAssignment/></StudentPage>} />
               </>
             )}
           </Routes>
 
           {/* {(userRole !== "ROLE_ADMIN" && userRole == "ROLE_STUDENT") && ( 
             <StudentNavBar/>
-          // <Footer />  
           )}  */}
+          {/* <Footer />   */}
         </BrowserRouter>
       </TokenProvider>
     </>

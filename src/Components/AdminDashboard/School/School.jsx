@@ -65,9 +65,6 @@ function School() {
     console.log("Loading....")
     return (
       <Loading/>
-      // <Grid container justifyContent="center" alignItems="center" style={{ height: "90vh" }}>
-      //   <CircularProgress />
-      // </Grid>
     );
   }
 

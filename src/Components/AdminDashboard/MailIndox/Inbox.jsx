@@ -20,7 +20,7 @@ function Inbox() {
   const pageSize = 10; // Number of items per page
 
   const ALL_MAIL_URL = "http://localhost:8080/api/v1/mail/all";
-  
+
 
 
   useEffect(() => {
@@ -70,42 +70,55 @@ function Inbox() {
   return (
     <div>
       <Grid container>
-        <Grid item xs={4} className="mb-2">
-          <Dropdown
-            options={["Inbox", "Sendbox"]}
-            label={filterStatus}
-            onSelect={handleFilterSelect}
-          />
+
+        <Grid item xs={12}>
+          <div className="flex justify-between">
+
+
+              {/* Filter */}
+              <div className="ml-[-20px]">
+              <Dropdown
+                options={["Inbox", "Sendbox"]}
+                label={filterStatus}
+                onSelect={handleFilterSelect}
+              />
+            </div>
+
+            {/* Add new */}
+            <div className="mr-5 mb-3 w-[100px] ">
+
+              <Link to="/admin/mail/send">
+
+                <button
+                  type="button"
+                  class="px-6 py-2.5 flex justify-items-end mt-3  rounded text-white text-sm tracking-wider font-semibold border-none outline-none bg-green-600 hover:bg-green-700 active:bg-green-600"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18px"
+                    fill="#fff"
+                    class="flex mr-3"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M467 211H301V45c0-24.853-20.147-45-45-45s-45 20.147-45 45v166H45c-24.853 0-45 20.147-45 45s20.147 45 45 45h166v166c0 24.853 20.147 45 45 45s45-20.147 45-45V301h166c24.853 0 45-20.147 45-45s-20.147-45-45-45z"
+                      data-original="#000000"
+                    />
+                  </svg>
+                  New
+                </button>
+
+              </Link>
+            </div>
+          </div>
+
         </Grid>
-        <Grid item xs={6}>
-          {/* Filter option */}
-        </Grid>
-        <Grid item xs={2}>
-          <Link to="/admin/mail/send">
-            <button
-              type="button"
-              class="px-6 flex justify-items-end mt-3 py-2.5 rounded text-white text-sm tracking-wider font-semibold border-none outline-none bg-blue-600 hover:bg-blue-700 active:bg-blue-600"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18px"
-                fill="#fff"
-                class="inline mr-3"
-                viewBox="0 0 512 512"
-              >
-                <path
-                  d="M467 211H301V45c0-24.853-20.147-45-45-45s-45 20.147-45 45v166H45c-24.853 0-45 20.147-45 45s20.147 45 45 45h166v166c0 24.853 20.147 45 45 45s45-20.147 45-45V301h166c24.853 0 45-20.147 45-45s-20.147-45-45-45z"
-                  data-original="#000000"
-                />
-              </svg>
-              Send new Mail
-            </button>
-          </Link>
-        </Grid>
+
+
       </Grid>
       <Grid container>
         <Grid item xs={12}>
-          <div className="overflow-x-auto">
+          <div className="p-2 overflow-x-auto">
             <table className="min-w-full bg-white font-[sans-serif]">
               <thead class="bg-gray-300 whitespace-nowrap">
                 <tr>
@@ -139,13 +152,14 @@ function Inbox() {
 
                     <tr key={index} className="even:bg-blue-50">
 
-                      <td className="pr-2 pl-4 py-4 text-sm">{data.createdDate}</td>
-                      <td className="pr-1 pl-4 py-4 text-sm">{data.sendFrom}</td>
-                      <td className="pl-1 py-4 text-sm">{data.sendTo}</td>
+                      <td className="pr-2 gap-2 pl-4 py-4 text-sm">{data.createdDate}</td>
+                      <td className="pr-1 gap-2 pl-4 py-4 text-sm">{data.sendFrom}</td>
+                      <td className="pl-1 gap-2 py-4 text-sm">{data.sendTo}</td>
                       <td className="py-4 text-sm truncate">{data.subject}</td>
                       <td className="max-w-20 py-4 text-sm truncate">{data.messageBody}</td>
                       <td className="pr-4 pl-py-1 text-sm text-right">
-                      <Link to={`/admin/mail/info/${data.mailId}/${data.sendTo}/${data.messageBody}/${data.subject}/${data.sendFrom}/${data.createdDate}`}>
+
+                        <Link to={`/admin/mail/info/${data.mailId}/${data.sendTo}/${data.messageBody}/${data.subject}/${data.sendFrom}/${data.createdDate}`}>
                           <svg
                             fill="#0071e1"
                             version="1.1"

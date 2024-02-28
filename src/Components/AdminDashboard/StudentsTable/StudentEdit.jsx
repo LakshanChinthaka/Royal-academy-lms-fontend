@@ -21,7 +21,6 @@ function StudentEdit() {
     gender: "",
     nic: "",
     dob: "",
-    address: "",
     city: "",
     district: "",
   });
