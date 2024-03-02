@@ -200,24 +200,35 @@ function ShowAllAssignemt() {
                                 </td>
 
                                 <td className="px-6 py-4 text-sm justify-items-center ">
-
-                                    {data.grade ? (
-                                        data.grade === "Distinction" ? (
-                                            <div class="px-3 py-1 bg-purple-500 block justify-items-center  w-max text-sm text-white rounded">Distinction</div>
-                                        ) : (
-                                            data.grade === "Merit" ? (
-                                              
-                                                <div class="px-3 py-1 bg-blue-500 ml-4  w-max text-sm text-white rounded">Merit</div>
-                                           
-                                                ) : (data.grade === "Pass" ? (
-
-                                                <div class="px-3 py-1 bg-green-500 ml-4  w-max text-sm font-semibold  text-white rounded">Pass</div>
-                                            ) :
-                                                <div class="px-3 py-1 bg-red-500 ml-2  w-max text-sm text-white rounded">Repeat</div>
-                                            )
-                                        )
-                                    ) : (
-                                        <div class="px-3 py-1 bg-yellow-500 ml-1  w-max text-sm text-white rounded">Pending</div>
+                                    
+                                    {data.grade && (
+                                        <div>
+                                            {data.grade === "Distinction" && (
+                                                <div className="px-3 py-1 bg-purple-500 block justify-items-center w-max text-sm text-white rounded">
+                                                    Distinction
+                                                </div>
+                                            )}
+                                            {data.grade === "Merit" && (
+                                                <div className="px-3 py-1 bg-blue-500 ml-4 w-max text-sm text-white rounded">
+                                                    Merit
+                                                </div>
+                                            )}
+                                            {data.grade === "Pass" && (
+                                                <div className="px-3 py-1 bg-green-500 ml-4 w-max text-sm font-semibold text-white rounded">
+                                                    Pass
+                                                </div>
+                                            )}
+                                            {data.grade === "Pending" && (
+                                                <div className="px-3 py-1 bg-yellow-500 ml-1 w-max text-sm text-white rounded">
+                                                    Pending
+                                                </div>
+                                            )}
+                                            {data.grade === "Repeat" && (
+                                                <div className="px-3 py-1 bg-red-500 ml-2 w-max text-sm text-white rounded">
+                                                    Repeat
+                                                </div>
+                                            )}
+                                        </div>
                                     )}
 
                                 </td>

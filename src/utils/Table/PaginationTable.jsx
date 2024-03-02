@@ -52,7 +52,7 @@ function PaginationTable({ id, title, URL, headers, tableHeaders, itemName }) {
     <>
       <div>
       <Border/>
-        <div className="inline-block">
+        <div className="inline-block overflow-x-auto">
           <h2 class="inline-block text-sm pr-10 mb-1 pl-5 font-bold text-gray-700 ">
             Total {itemName} - {totalElements}
           </h2>
@@ -62,7 +62,7 @@ function PaginationTable({ id, title, URL, headers, tableHeaders, itemName }) {
 
         </div>
         <div class="">
-          <table class="min-w-full bg-white font-[sans-serif]">
+          <table class="min-w-full bg-white font-[sans-serif] overflow-x-auto">
             <thead class="bg-gray-800 whitespace-nowrap">
               {/* Table deader */}
               <tr>

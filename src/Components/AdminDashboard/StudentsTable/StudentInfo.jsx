@@ -7,48 +7,10 @@ import { useToken } from "../../Context/TokenProvider";
 import BackButton from "../../../utils/Dropdown/BackButton/BackButton";
 
 function StudentInfo() {
-    // const { token } = useToken();
-    // const { id } = useParams();
-//     const [studentData, setStudentDetails] = useState([]);
 
 const location = useLocation();
 const { studentData } = location.state; // Access the passed state
 
-// console.log(studentData)
-
-
-//     const GET_STUDENT_URL = "http://localhost:8080/api/v1/student/find";
-
-//     useEffect(() => {
-//         getData();
-
-//         console.log("id-", id)
-//     }, [])
-
-//     const getData = async () => {
-//         try {
-//             const res = await axios.get(GET_STUDENT_URL, {
-//                 headers: {
-//                     Authorization: `Bearer ${token}`,
-//                 },
-//                 params: {
-//                     id: id
-//                 },
-//             });
-//             console.log("Api data-",res.data.data);
-//             const stData = res.data.data
-
-
-//             setStudentDetails(stData);
-
-
-//         } catch (error) {
-//             console.error("Error fetching data:", error);
-//         }
-//     };
-
-// console.log("New data",studentData)
-// console.log("Name",studentData.firstName)
 
     return (
         <div>

@@ -25,7 +25,7 @@ function MailSend() {
     const SEND_MAIL_URL = "http://localhost:8080/api/v1/mail/send";
 
     const [data, setData] = useState({
-        sendFrom: "royalacadmey@mail.com",
+        sendFrom: email,
         sendTo: "",
         subject: "",
         messageBody: "",
@@ -89,6 +89,7 @@ function MailSend() {
         );
 
         if (confirmed) {
+            console.log(data)
             try {
                 const res = await axios.post(SEND_MAIL_URL, data, {
                     headers: {
@@ -97,7 +98,7 @@ function MailSend() {
                 });
 
                 setData({
-                    sendFrom: "royalacadmey@mail.com",
+                    // sendFrom: "royalacadmey@mail.com",
                     sendTo: "",
                     subject: "",
                     messageBody: "",
@@ -133,7 +134,7 @@ function MailSend() {
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={2} columns={6}>
                     <Grid item xs={3}>
-                        <div className="bg-white mt-5 mb-5 ml-[200px] flex px-1 py-1 rounded-full border border-blue-500 overflow-hidden max-w-md mx-auto font-[sans-serif]">
+                        <div className="bg-white ml-10 mt-5 w-[350px] sm:mt-5 sm:mb-5 sm:ml-[200px] flex px-1 py-1 rounded-full border border-blue-500 overflow-hidden max-w-md mx-auto font-[sans-serif]">
                             <input
                                 value={nic}
                                 onChange={handleSearchInputData}
@@ -151,16 +152,16 @@ function MailSend() {
                                 Search
                             </button>
                         </div>
-                        <div className="ml-[180px] mt-4 mb-3">
+                        <div className="sm:ml-[180px] ml-5 mt-4 mb-3">
                             {/* From */}
-                            <div className="inline-flex align-baseline">
+                            {/* <div className="inline-flex align-baseline">
                                 <h2 className="align-baseline text-sm pr-10 mb-1 pl-5 font-bold text-gray-700">
                                     From:
                                 </h2>
                                 <p className="ml-[-20px] align-baseline">
                                     royalacadmey@mail.com
                                 </p>
-                            </div>
+                            </div> */}
                             {/* To */}
                             <div className="align-baseline mt-4">
                                 <h2 className="inline-flex align-baseline text-sm pr-10 mb-1 pl-5 font-bold text-gray-700">
@@ -190,7 +191,7 @@ function MailSend() {
                             </div>
 
                         </div>
-                        <div className="inline-flex align-baseline mt-1 ml-[180px]">
+                        <div className="sm:inline-flex align-baseline ml-5 mt-1 sm:ml-[180px]">
                             <h2 className="inline-block align-middle  text-sm pr-10 mb-1 pl-5 font-bold text-gray-700">
                                 Subject:
                             </h2>
@@ -202,17 +203,17 @@ function MailSend() {
                                 maxLength={300}
                                 name="subject"
                                 type="text"
-                                className="bg-gray-100 mt-2 max-h-[100px] min-h-[20px] w-[500px] text-sm px-4 py-3.5 rounded-md outline-blue-500"
+                                className="bg-gray-100 mt-2 max-h-[100px] ml-5 min-h-[20px] w-[400px] sm:w-[500px] text-sm px-4 py-3.5 rounded-md outline-blue-500"
                                 placeholder="Enter subject"
                             />
                         </div>
 
                     </Grid>
                     <Grid item xs={5}>
-                        <div>
+                        <div className="sm:inline-flex align-baseline ml-5 mt-1 sm:ml-[7px]">
                             <label
                                 htmlFor="description"
-                                className="ml-[180px] text-sm pr-10  pl-5 font-bold text-gray-700"
+                                className="sm:ml-[180px] lg:ml-[180px]  ml-1 text-sm pr-10  pl-5 font-bold text-gray-700"
                             >
                                 Message
                             </label>
@@ -224,7 +225,7 @@ function MailSend() {
                                 maxLength={1000}
                                 name="messageBody"
                                 type="text"
-                                className="bg-gray-100 mt-2 ml-[200px]  max-h-[500px] min-h-[280px] w-[700px] text-sm px-4 py-3.5 rounded-md outline-blue-500"
+                                className="bg-gray-100 mt-2 sm:ml-[10px] ml-5 max-h-[500px] min-h-[280px] w-[700px] text-sm px-4 py-3.5 rounded-md outline-blue-500"
                                 placeholder="Enter address"
                             />
                         </div>

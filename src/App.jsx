@@ -42,6 +42,7 @@ import AssigmentAdd from './Components/AdminDashboard/Assignment/AssigmentAdd';
 import StudentAssignment from './Components/StudentDashboard/Assignment/StudentAssignment';
 import ShowAllAssignemt from './Components/AdminDashboard/Assignment/ShowAllAssignemt';
 import AdminNavbar from './Components/Navbar/AdminNavbar';
+import SubjectAdd from './Components/AdminDashboard/Subject/SubjectAdd';
 
 
 
@@ -69,26 +70,22 @@ function App() {
 
           {userRole === "ROLE_ADMIN" && userRole !== "ROLE_STUDENT" && (
             <AdminNavbar userRole={userRole} />
-          )} 
+          )}
 
           {userRole === "ROLE_STUDENT" && (
-            <StudentNavBar />
+            <StudentNavBar userRole={userRole} />
           )}
 
 
 
-          {/* {(userRole == "ROLE_ADMIN" && userRole !== "ROLE_STUDENT") && (
-
-            <AdminNavBar userRole={userRole} />
-            //  <NavBar userRole={userRole} /> 
-          )} */}
+          {userRole === "ROLE_ADMIN" || userRole === "ROLE_STUDENT" ? " " : <NavBar />}
 
 
           <Routes>
-            {/* <Route path="/" element={<HomePage logout />} /> */}
+            <Route path="/" element={<HomePage logout />} />
             <Route path="/login" element={<SignInPage />} />
             <Route path="/program" element={<Program />} />
-            <Route path="/course" element={<CourseInfo />} />
+            <Route path="/course/:id/:name/:description/:courseType/:imageUrl" element={<CourseInfo />} />
             <Route path="/text" element={<Text />} />
 
             {userRole === "ROLE_ADMIN" && (
@@ -118,9 +115,10 @@ function App() {
 
                 {/* Subject */}
                 <Route path="/admin/subject" element={<AdminPage><Subject /></AdminPage>} />
+                <Route path="/admin/subject/add" element={<AdminPage><SubjectAdd/></AdminPage>} />
                 <Route path="/admin/subject/assign/:id/:name/:code" element={<AdminPage><SubjectAssign /></AdminPage>} />
                 {/* Student */}
-                <Route path="/admin/subject/update/:id" element={<AdminPage><StudentEdit /></AdminPage>} />
+                <Route path="/admin/subject/update/:id/:firstName/:lastName/:nic/:mobileNo/:gender/:address/:district" element={<AdminPage><StudentEdit /></AdminPage>} />
                 {/* <Route path="/admin/student/info/:id" element={<AdminPage><StudentInfo/></AdminPage>} /> */}
                 <Route path="/admin/student/info/:id/:firstName/:lastName/:nic/:mobileNo/:gender/:dob/:activeStatus/:imageUrl/:address/:enrollId/:batchId/:batchCode/:courseId/:courseName/:enrollDate" element={<AdminPage><StudentInfo /></AdminPage>} />
                 {/* Account */}
@@ -131,8 +129,8 @@ function App() {
                 <Route path="/admin/mail/send" element={<AdminPage><MailSend /></AdminPage>} />
                 <Route path="/admin/mail/info/:mailId/:sendTo/:messageBody/:subject/:sendFrom/:createdDate" element={<AdminPage><MailInfo /></AdminPage>} />
                 {/* Assigment */}
-                <Route path="/admin/assigment/add" element={<AdminPage><AssigmentAdd/></AdminPage>} />
-                <Route path="/admin/assigment/all" element={<AdminPage><ShowAllAssignemt/></AdminPage>} />
+                <Route path="/admin/assigment/add" element={<AdminPage><AssigmentAdd /></AdminPage>} />
+                <Route path="/admin/assigment/all" element={<AdminPage><ShowAllAssignemt /></AdminPage>} />
               </>
 
             )}
@@ -141,7 +139,7 @@ function App() {
               <>
                 <Route path="/student/dashboard" element={<StudentPage />} />
                 <Route path="/student/profile" element={<StudentPage><StudentProfile /></StudentPage>} />
-                <Route path="/student/assignment" element={<StudentPage><StudentAssignment/></StudentPage>} />
+                <Route path="/student/assignment" element={<StudentPage><StudentAssignment /></StudentPage>} />
               </>
             )}
           </Routes>

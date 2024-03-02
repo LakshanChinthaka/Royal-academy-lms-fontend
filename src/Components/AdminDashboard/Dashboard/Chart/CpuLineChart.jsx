@@ -61,7 +61,7 @@ function CpuLineChart() {
     scales: {
       y: {
         min: 0,
-        max: 30,
+        max: 100,
         ticks: {
           stepSize: 5 // adjust the step size as needed
         }

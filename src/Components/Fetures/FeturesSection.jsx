@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Fetures() {
+function FeturesSection() {
   return (
     <div>
         <div class="font-[sans-serif] text-white bg-gradient-to-r from-purple-800 to-indigo-800 py-12 px-4">
@@ -83,4 +83,4 @@ function Fetures() {
   )
 }
 
-export default Fetures
+export default FeturesSection

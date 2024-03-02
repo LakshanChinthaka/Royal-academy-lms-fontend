@@ -158,7 +158,7 @@ function StudentAssignment() {
                       batchID={data.batchId}
                       assCode={data.assiCode}
                       URL={ASSIGNMENT_SUBMIT_URL}
-                      // loadUse=""
+                      
                       Id={id}
                       filePath="submit"
                       uploadFileName={`${data.assiCode}-${id} `}

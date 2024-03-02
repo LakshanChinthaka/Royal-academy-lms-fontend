@@ -44,7 +44,7 @@ function SigninPage() {
         navigate("/admin/dashboard");
       } else {
         console.log(decodedToken.role)
-        navigate("/student/dashboard");
+        navigate("/student/assignment");
       }
 
       window.location.reload();

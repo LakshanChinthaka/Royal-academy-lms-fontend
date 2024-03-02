@@ -5,8 +5,16 @@ import { Link, useNavigate } from "react-router-dom";
 import BackButton from "../../../utils/Dropdown/BackButton/BackButton";
 import { useToken } from "../../Context/TokenProvider";
 import AutocompleteComponent from "../../../page/SignInPage/AutocompleteComponent";
-import Swal from "sweetalert2";
 import ConfirmAlert from "../../../utils/ConfiramAlert";
+import {
+  ref,
+  getDownloadURL,
+  uploadBytes,
+  deleteObject,
+} from "firebase/storage";
+import { storage } from "../../firebase";
+ 
+
 
 function CourseCreate() {
   const { token } = useToken();
@@ -19,6 +27,7 @@ function CourseCreate() {
   // Message
   const { SuccessMessage } = SuccessAlert();
   const { ConfirmMessage } = ConfirmAlert();
+  const [img, setImg] = useState("");
 
   const navigate = useNavigate();
 
@@ -35,8 +44,9 @@ function CourseCreate() {
     fees: "",
     totalHours: "",
     totalCredit: "",
+    // imageUrl: "",
   });
-  //   const [selectedSchoolId, setSelectedSchools] = useState(null);
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -64,26 +74,55 @@ function CourseCreate() {
     setFormData({ ...formData, medium: selectedOption });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ console.log(formData)
 
-    const confirmed = await ConfirmMessage(
-      "Submit Confirmation",
-      "Are you sure you want to Submit?",
-      "Yes, Submit",
-      "Cancel"
-    );
+// image upload to firebase
+const handleSubmitWithImage = async (e) => {
+  e.preventDefault();
 
-    if (confirmed) {
+  const confirmed = await ConfirmMessage(
+    "Submit Confirmation",
+    "Are you sure you want to Submit?",
+    "Yes, Submit",
+    "Cancel"
+  );
+
+  if (confirmed) {
+
+    if (!img) return; 
+
+
+    const fileName = `${formData.code}-course-Image`;
+
+    const imgRef = ref(storage, `course/${fileName}`);
+
+    try {
+      const existingUrl = await getDownloadURL(imgRef);
+      const existingImageRef = ref(storage, existingUrl);
+      await deleteObject(existingImageRef);
+      await uploadBytes(imgRef, img);
+      const newImageUrl = await getDownloadURL(imgRef);
+
+      console.log("Firebase Image url-", newImageUrl);
+
+      console.log("Save file", formData)
+
+      console.log("Save to db", formData);
+
       try {
-        const res = await axios.post(COURSE_ADD_URL, formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        const confirmed = await SuccessMessage(res.data.data, "success");
-
+        const res = await axios.post(
+          COURSE_ADD_URL,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            params:{
+              imageUrl: newImageUrl
+            }
+          }
+        );
+  
         setFormData({
           courseId: 0,
           code: "",
@@ -98,32 +137,67 @@ function CourseCreate() {
           totalHours: "",
           totalCredit: "",
         });
-        navigate(-1);
-
+        const confirmed = await SuccessMessage(res.data.data, "success");
+        navigate("/admin/course");
+    
       } catch (error) {
+        // setLoading(false)
         const confirmed = await SuccessMessage(
           error.response.data.data,
           "error"
         );
       }
-    } else {
-      Swal.fire("Sumbit Cancelled", "", "info");
-      setFormData({
-        courseId: 0,
-        code: "",
-        name: "",
-        description: "",
-        schoolId: "",
-        courseType: null,
-        category: null,
-        medium: null,
-        duration: "",
-        fees: "",
-        totalHours: "",
-        totalCredit: "",
-      });
+    } catch (error) {
+
+      if (error.code === "storage/object-not-found") {
+        await uploadBytes(imgRef, img);
+        const newImageUrl = await getDownloadURL(imgRef);
+
+        try {
+          const res = await axios.post(
+            COURSE_ADD_URL,
+            formData,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+              params:{
+                imageUrl: newImageUrl
+              }
+            }
+          );
+    
+          setFormData({
+            courseId: 0,
+            code: "",
+            name: "",
+            description: "",
+            schoolId: "",
+            courseType: null,
+            category: null,
+            medium: null,
+            duration: "",
+            fees: "",
+            totalHours: "",
+            totalCredit: "",
+          });
+          const confirmed = await SuccessMessage(res.data.data, "success");
+          navigate("/admin/course");
+
+        } catch (error) {
+          const confirmed = await SuccessMessage(
+            error.response.data.data,
+            "error"
+          );
+        }
+
+      } else {
+        console.error("Error handling image:", error);
+      }
     }
-  };
+  }
+};
+
 
   return (
     <div>
@@ -138,7 +212,7 @@ function CourseCreate() {
         </h2>
       </div>
       <div class="max-w-4xl mx-auto font-[sans-serif] text-[#333] p-6">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmitWithImage}>
           <div class="grid sm:grid-cols-2 gap-y-7 gap-x-12">
             <div>
               <label htmlFor="code" class="text-sm mb-2 block">
@@ -291,6 +365,50 @@ function CourseCreate() {
                 placeholder="Enter name"
               />
             </div>
+
+
+
+
+
+
+            <label
+              htmlFor="uploadFile1"
+              className="bg-gray-800 hover:bg-gray-700 text-center  text-white text-sm lg:ml-[200px]  sm:ml-[100px] md:ml-[100px] pr-3 pl-4 py-1 ml-3 mt-5 outline-none rounded w-max cursor-pointer mx-auto block "
+
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-5 mr-2  fill-white inline items-center"
+                viewBox="0 0 32 32"
+              >
+                <path
+                  d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
+                  data-original="#000000"
+                />
+                <path
+                  d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
+                  data-original="#000000"
+                />
+              </svg>
+
+              {/* Select image */}
+              <input
+                type="file"
+                onChange={(e) => setImg(e.target.files[0])}
+                id="uploadFile1"
+                class="hidden mt-10"
+              />
+              Uplaod cover image
+            </label>
+
+
+
+
+
+
+
+
+
           </div>
           <div class="!mt-2 flex flex-col">
             {/* Sumbit btn */}

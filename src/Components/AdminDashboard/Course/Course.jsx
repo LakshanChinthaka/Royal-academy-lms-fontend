@@ -103,12 +103,7 @@ function Course() {
   return (
     <div>
       <Grid container>
-        <div></div>
-        {/* Your grid items */}
-        <Grid item xs={1} className="mb-2 mr-2">
-        
-        </Grid>
-
+        <div className="block">
 
         <Grid item xs={2}>
 
@@ -128,7 +123,7 @@ function Course() {
 
         <Grid item xs={2}>
 
-          <div className="ml-[100px] mt-3">
+          <div className="ml-5 mt-3 ">
             <AutocompleteComponent
               endpoint={MEDIUM_URL}
               headers={{ Authorization: `Bearer ${token}` }}
@@ -144,7 +139,7 @@ function Course() {
         </Grid>
         <Grid item xs={2}>
           
-          <div className="ml-[200px] mt-3">
+          <div className="ml-5 mt-3">
             <AutocompleteComponent
               endpoint={CATEGORY_URL}
               headers={{ Authorization: `Bearer ${token}` }}
@@ -157,8 +152,9 @@ function Course() {
           </div>
 
         </Grid>
+        </div>
         <Grid item xs={4}>
-
+      <div className="ml-[150px] sm:justify-end mt-2">
           {/* Add new btn */}
           <Link to="/admin/course/add">
             <button
@@ -180,6 +176,7 @@ function Course() {
               Add New
             </button>
           </Link>
+          </div>
         </Grid>
 
       </Grid>
@@ -338,3 +335,5 @@ function Course() {
 }
 
 export default Course;
+
+

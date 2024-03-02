@@ -44,9 +44,13 @@ function AdminCourseInfo() {
               Course Information
             </h2>
           </div>
-          <Grid container spacing={2} columns={3}>
+
+          <div className="flex ml-3">
+
+          <Grid container spacing={2} md:columns={4}>
             <Grid item xs={1}>
-              <div className="ml-10">
+
+              <div className="ml-7">
                 <tbody class="whitespace-nowrap">
                   <tr>
                     <td class="px-6 py-2 text-sm text-[#333] whitespnace-wrap font-bold">
@@ -86,8 +90,12 @@ function AdminCourseInfo() {
                 </tbody>
               </div>
             </Grid>
+
+            <div className="flex sm:ml-[280px]  mt-[210px] sm:mt-3">
+
+     
             <Grid item xs={1}>
-              <div className="pl-[110px]">
+              <div className="sm:pl-[110px]">
                 <tbody class="whitespace-nowrap">
                   <tr>
                     <td class=" ml-[500px] px-6 py-2 text-sm text-[#333] font-bold">
@@ -134,7 +142,14 @@ function AdminCourseInfo() {
                 </tbody>
               </div>
             </Grid>
-            <Grid item xs={1} className="m-l-[-150px]">
+
+            </div>
+
+            <div className="flex sm:ml-[200px] ml-10">
+
+          
+
+            <Grid item xs={1} className="m-l-[-150px] ">
               <div className="">
                 <tbody class="whitespace-nowrap">
                   <tr>
@@ -173,7 +188,12 @@ function AdminCourseInfo() {
                 </tbody>
               </div>
             </Grid>
+
+
+            </div>
+
           </Grid>
+          </div>
         </Grid>
         <Grid item xs={12}>
           <Grid container spacing={2}>

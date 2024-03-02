@@ -9,7 +9,8 @@ function StudentEdit() {
   const { token } = useToken();
   const { SuccessMessage } = SuccessAlert();
   const [rb, setRb] = useState("");
-  const { id } = useParams();
+
+  const { id,firstName,lastName,nic,mobileNo,gender,district} = useParams();
 
   const STUDENT_UPDATE_URL = "http://localhost:8080/api/v1/student/edit-by-id";
 
@@ -108,7 +109,7 @@ function StudentEdit() {
                         value={formData.firstName}
                         onChange={handleChange}
                         required
-                        pattern="[a-zA-Z]*"
+          
                         name="firstName"
                         type="text"
                         class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
@@ -121,7 +122,7 @@ function StudentEdit() {
                         value={formData.lastName}
                         onChange={handleChange}
                         required
-                        pattern="[a-zA-Z]*"
+                        
                         name="lastName"
                         type="text"
                         class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
@@ -137,7 +138,7 @@ function StudentEdit() {
                         value={formData.address}
                         onChange={handleChange}
                         required
-                        pattern="[a-zA-Z]*"
+                       
                         name="address"
                         type="text"
                         class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
@@ -153,7 +154,7 @@ function StudentEdit() {
                         value={formData.city}
                         onChange={handleChange}
                         required
-                        pattern="[a-zA-Z]*"
+                       
                         name="city"
                         type="text"
                         class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"
@@ -169,7 +170,7 @@ function StudentEdit() {
                         value={formData.district}
                         onChange={handleChange}
                         required
-                        pattern="[a-zA-Z]*"
+                       
                         name="district"
                         type="text"
                         class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-blue-500"

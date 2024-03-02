@@ -69,7 +69,7 @@ function Subject() {
         <Grid container>
           <Grid item xs={12}>
             <div className="grid justify-items-end mr-9 mt-2">
-              <Link to="/admin/batch/add">
+              <Link to="/admin/subject/add">
                 <Button name={"Add New"} />
               </Link>
             </div>

@@ -148,7 +148,7 @@ function BatchInfo() {
                       <td className="px-6 py-4 text-sm">{data.assignBy}</td>
                       <td className="pl-2 pr-2 py-4 flex text-center">
                         <DeleteButton
-                          id={data.studentId}
+                          id={data.enrollId}
                           DELETE_URL={DELETE_STUDENT}
                         />
                       </td>

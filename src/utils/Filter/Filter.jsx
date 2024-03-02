@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import axios from 'axios';
 
-const AutocompleteComponent = ({ endpoint, headers, getOptionLabel, clearOnEscape, label, onChange, width  }) => {
+const Filter = ({ endpoint, getOptionLabel, clearOnEscape, label, onChange, width  }) => {
 
     const [options, setOptions] = useState([]);
     const [selectedOption, setSelectedOption] = useState(null); // State to hold the selected option
@@ -13,8 +13,8 @@ const AutocompleteComponent = ({ endpoint, headers, getOptionLabel, clearOnEscap
     useEffect(() => {
         const fetchOptions = async () => {
             try {
-                const response = await axios.get(endpoint, { headers });
-                // console.log("new", response.data)
+                const response = await axios.get(endpoint);
+                console.log("new", response.data)
                 if (Array.isArray(response.data.data)) {
                     setOptions(response.data.data);
                     
@@ -26,7 +26,7 @@ const AutocompleteComponent = ({ endpoint, headers, getOptionLabel, clearOnEscap
             }
         };
         fetchOptions();
-    }, [endpoint, headers]);
+    }, [endpoint]);
 
     const handleSelectionChange = (event, value) => {
         setSelectedOption(value); // Update selected option state
@@ -56,7 +56,7 @@ const AutocompleteComponent = ({ endpoint, headers, getOptionLabel, clearOnEscap
     );
 };
 
-export default AutocompleteComponent;
+export default Filter;
 
 
 

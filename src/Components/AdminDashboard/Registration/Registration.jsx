@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Grid } from "@mui/material";
 import axios from "axios";
 import SuccessAlert from "../../../utils/SuccessAlert";
+import Tab from "../../Tab/Tab";
 
 function Registration() {
   const { SuccessMessage } = SuccessAlert();
@@ -89,7 +90,7 @@ function Registration() {
   return (
     <div>
       <Grid container>
-        <Grid item xs={4}></Grid>
+        {/* <Grid item xs={12}><Tab/></Grid> */}
         <Grid item xs={4}></Grid>
         <Grid item xs={4}></Grid>
         <Grid item xs={12}>

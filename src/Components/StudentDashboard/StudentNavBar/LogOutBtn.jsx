@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import ConfirmAlert from "../../utils/ConfiramAlert";
+import ConfirmAlert from "../../../utils/ConfiramAlert";
 
 
-function LogOutButton() {
+function LogOutBtn() {
   const { ConfirmMessage } = ConfirmAlert();
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ function LogOutButton() {
       localStorage.removeItem("id");
       localStorage.removeItem("userRole")
 
-      navigate("/");
+      navigate("/login");
 
       window.location.reload();
     } else {
@@ -33,6 +33,7 @@ function LogOutButton() {
     }
 
   };
+//   window.location.reload();
   return (
     <div className="mt[-10px]">
       <button
@@ -45,4 +46,4 @@ function LogOutButton() {
   );
 }
 
-export default LogOutButton;
+export default LogOutBtn;

@@ -1,15 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import hero_img from "../../assets/hero-2d.jpg"
-import Status from '../Status/Status'
-import Fetures from '../Fetures/Fetures'
 import ContactUs from '../../page/ContactUs/ContactUs'
+import Status from '../Status/Status'
+import FeturesSection from '../Fetures/FeturesSection'
+
 
 function HomePage() {
   return (
     <div logout>
-
-      <div class="bg-gradient-to-r from-indigo-900 mt-5 to-purple-900 font-[sans-serif]">
+{/* <NavBar/> */}
+      <div class="bg-gradient-to-r from-indigo-900  to-purple-900 font-[sans-serif]">
         <div class="relative overflow-hidden">
           <div class="max-w-screen-xl mx-auto py-16 px-4 sm:px-6 lg:py-32 lg:px-8">
             <div class="relative z-10 text-center lg:text-left">
@@ -43,11 +44,11 @@ function HomePage() {
         </div>
       </div>
       {/* Status */}
-      <Status />
+     <Status/>
       {/* feture */}
-      <Fetures />
+    <FeturesSection/>
       {/* contact us */}
-      <ContactUs />
+    <ContactUs/>
     </div>
   )
 }

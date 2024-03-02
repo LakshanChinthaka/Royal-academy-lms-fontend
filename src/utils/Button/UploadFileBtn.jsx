@@ -79,7 +79,7 @@ function UploadFileBtn({ title, accept, label, btnName, URL, filePath, uploadFil
                     Authorization: `Bearer ${token}`,
                 },
             });
-
+          
             Swal.fire({
                 title: 'Success',
                 icon: 'success',
@@ -97,6 +97,7 @@ function UploadFileBtn({ title, accept, label, btnName, URL, filePath, uploadFil
         }
     };
 
+    //Select file option
     const handleFileSelect = async () => {
         try {
             const { value: file } = await Swal.fire({

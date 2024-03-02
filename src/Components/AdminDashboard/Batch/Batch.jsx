@@ -54,7 +54,7 @@ function Batch() {
 
   const tableHeaders = [
     "Code",
-    "Status",
+    // "Status",
     "No of Student",
     "Course",
     "School",
@@ -113,18 +113,8 @@ function Batch() {
                 class="even:bg-blue-50"
               >
                 <td class="pr-2 pl-4 py-4 text-sm text-left">{data.code}</td>
-                <td className="px-6 py-4 text-sm">
-                  {data.activeStatus ? (
-                    <span class="w-[68px] block text-center py-0.5 border-2 border-green-500 text-green-500 font-semibold rounded text-xs">
-                      Active
-                    </span>
-                  ) : (
-                    <span class="w-[68px] block text-center py-0.5 border-2 border-red-500 text-red-500 font-semibold rounded text-xs">
-                      Inactive
-                    </span>
-                  )}
-                </td>
-                <td class="pr-2 pl-4 py-1 text-sm text-center">{data.count}</td>
+
+                <td class="pr-2 pl-4 py-1 text-sm text-left">{data.count}</td>
                 <td class="pr-2 pl-4 py-1 text-sm text-left">
                   {data.courseName}
                 </td>

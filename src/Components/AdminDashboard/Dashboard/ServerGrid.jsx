@@ -24,7 +24,7 @@ function ServerGrid() {
     const RES400_URL = "http://localhost:8080/manage/metrics/http.status.400";
     const RES404_URL = "http://localhost:8080/manage/metrics/http.status.404";
     const RES500_URL = "http://localhost:8080/manage/metrics/http.status.500";
-    const ALL_RES_URL = "http://localhost:8080/manage/metrics/http.server.requests";
+    const ALL_RES_URL = "http://localhost:8080/manage/metrics/api.requests";
     const HEALTH_URL = " http://localhost:8080/manage/health";
 
 
@@ -76,18 +76,18 @@ function ServerGrid() {
 
     return (
         <div class=" px-5 py-2 font-[sans-serif] text-white">
-            <div class="grid xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-2 md:gap-x-2 md:gap-y-2 sm:gap-x-2 sm:gap-y-2 max-w-6xl mx-auto ">
+            <div class="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-2 md:gap-x-2 md:gap-y-2 sm:gap-x-2 sm:gap-y-2 max-w-6xl mx-auto ">
 
-                <div class="text-center border-2 p-4 border-gray-600 bg-gradient-to-r from-blue-500 to-indigo-500  rounded-md">
+                {/* <div class="text-center border-2 p-4 border-gray-600 bg-gradient-to-r from-blue-500 to-indigo-500  rounded-md">
                     <img src={TotalReqIcon} className='w-7' />
                     <h3 class="text-4xl font-extrabold sm:ml-[-7px] mt-2">{allRes}</h3>
-                    <p class="text-gray-900  font-semibold mt-3">Total Rquest</p>
-                </div>
+                    <p class="text-gray-800  font-semibold mt-3">Total Rquest</p>
+                </div> */}
 
                 <div class="text-center border-2 border-gray-600 p-4  rounded-md bg-[#4dca34]">
                     <img src={Ok200Icon} className='w-7' />
                     <h3 class="text-3xl font-extrabold mt-2">{res200}</h3>
-                    <p class="text-gray-900  font-semibold mt-3">200 Response</p>
+                    <p class="text-gray-800  font-semibold mt-3">200 Response</p>
                 </div>
 
                 <div class="text-center border-2 border-gray-600 p-4 rounded-md bg-[#f0e32e]">

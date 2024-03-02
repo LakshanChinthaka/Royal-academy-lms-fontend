@@ -38,26 +38,12 @@ function SubjectAssign() {
 
   const navigate = useNavigate();
 
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData({ ...data, [name]: value });
-//   };
 
-// const subjectIds = {
-//     addressId: 0,
-//     address: formData.address,
-//     city: formData.city,
-//     district: formData.district,
-//   };
   console.log(formData);
 
   const payload = {
     ...formData,
   };
-// const payload = {
-//     courseId: formData.courseId,
-//     subjectIds: [id] // Initialize subjectIds as an empty array
-//   };
 
   console.log(payload);
 
@@ -70,11 +56,6 @@ function SubjectAssign() {
           Authorization: `Bearer ${token}`,
         },
       });
-
-    //   setData({
-    //     schoolCode: "",
-    //     schoolName: "",
-    //   });
 
       const confirmed = await SuccessMessage(
         res.data.data,

@@ -13,7 +13,7 @@ function School() {
   const [filterStatus, setFilterStatus] = useState("All");
   const { token } = useToken();
   const DELETE_URL = "http://localhost:8080/api/v1/school/delete";
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(false); 
 
 
 
