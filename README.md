@@ -41,9 +41,6 @@ This project is a comprehensive web application built using Spring Boot, React, 
 ### User Profile Page
 ![image](https://github.com/LakshanChinthaka/backend-royal-lms-system/assets/115285758/e3474427-3874-447a-9817-3d72c825c677)
 
-### All the assignment submitted by the student and the lecturer can give the grade and download the assignment.
-**![image](https://github.com/LakshanChinthaka/backend-royal-lms-system/assets/115285758/6c81f7b2-61c9-466e-aa29-8499983c0f1a)**
-
 ### Student Dashboard, Studet can upload assignment 
 ![image](https://github.com/LakshanChinthaka/backend-royal-lms-system/assets/115285758/0e08f091-1cae-4b91-8cc6-fd2358547b98)
 
