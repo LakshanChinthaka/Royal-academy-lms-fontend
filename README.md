@@ -44,7 +44,7 @@ This project is a comprehensive web application built using Spring Boot, React, 
 ### Enroll Student
 ![image](https://github.com/LakshanChinthaka/Royal-academy-lms-fontend/assets/115285758/c351b62f-238f-410d-8214-6cbf00bb4d2b)
 
-### Create Courses
+### Courses Information
 ![image](https://github.com/LakshanChinthaka/Royal-academy-lms-fontend/assets/115285758/08fde196-f903-43c0-97df-3b3dfffb5de2)
 
 ### Create Details
