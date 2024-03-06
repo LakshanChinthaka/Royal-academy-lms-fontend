@@ -38,6 +38,18 @@ This project is a comprehensive web application built using Spring Boot, React, 
 ### Firebase Folder Structure
 ![image](https://github.com/LakshanChinthaka/Royal-academy-lms-fontend/assets/115285758/fb7487f2-aa97-4c8e-be89-53754924e40c)
 
+### Student Registration
+![image](https://github.com/LakshanChinthaka/backend-royal-lms-system/assets/115285758/61321109-c842-4c46-a8d2-fac01f1bd775)
+
+### Enroll Student
+![image](https://github.com/LakshanChinthaka/Royal-academy-lms-fontend/assets/115285758/c351b62f-238f-410d-8214-6cbf00bb4d2b)
+
+### Create Courses
+![image](https://github.com/LakshanChinthaka/Royal-academy-lms-fontend/assets/115285758/08fde196-f903-43c0-97df-3b3dfffb5de2)
+
+### Create Details
+![image](https://github.com/LakshanChinthaka/Royal-academy-lms-fontend/assets/115285758/f4441c87-52de-420c-8f18-9d8c20493c65)
+
 ### User Profile Page
 ![image](https://github.com/LakshanChinthaka/backend-royal-lms-system/assets/115285758/e3474427-3874-447a-9817-3d72c825c677)
 
