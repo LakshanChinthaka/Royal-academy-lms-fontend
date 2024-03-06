@@ -35,8 +35,8 @@ This project is a comprehensive web application built using Spring Boot, React, 
 ###  Admin Dashboard 02
 ![image](https://github.com/LakshanChinthaka/backend-royal-lms-system/assets/115285758/99c859d4-ef67-41ea-a0cd-bc685620aad6)
 
-### Backend Folder Structure
-![image](https://github.com/LakshanChinthaka/backend-royal-lms-system/assets/115285758/4db33c05-adac-45e0-966d-be891f96b645)
+### Firebase Folder Structure
+![image](https://github.com/LakshanChinthaka/Royal-academy-lms-fontend/assets/115285758/fb7487f2-aa97-4c8e-be89-53754924e40c)
 
 ### User Profile Page
 ![image](https://github.com/LakshanChinthaka/backend-royal-lms-system/assets/115285758/e3474427-3874-447a-9817-3d72c825c677)
