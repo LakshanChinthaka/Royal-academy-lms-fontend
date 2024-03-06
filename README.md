@@ -1,4 +1,4 @@
-![image](https://github.com/LakshanChinthaka/Royal-academy-lms-fontend/assets/115285758/1fd85b08-ee7e-4b6a-8636-851482b9d4c0)# Learning Management System (Front-end)
+# Learning Management System (Front-end)
 
 ### Used Technology -  Spring boot | React | MySQL | Firebase | AWS RDS & EC2 | TailwindCSS
 
